@@ -1,57 +1,77 @@
 import SectionLabel from "./SectionLabel";
 import ContactForm from "./ContactForm";
-import { MailIcon, PhoneIcon, PinIcon } from "./Icons";
+import SocialLinks, { activeSocial } from "./SocialLinks";
 import { site } from "@/content/site";
 
 export default function Contact() {
   const { email, phone, address } = site.contact;
   const details = [
-    { label: "Email", value: email, href: email ? `mailto:${email}` : undefined, Icon: MailIcon },
-    { label: "Phone", value: phone, href: phone ? `tel:${phone.replace(/[^\d+]/g, "")}` : undefined, Icon: PhoneIcon },
-    { label: "Address", value: address, href: undefined, Icon: PinIcon },
+    { label: "Email", value: email, href: email ? `mailto:${email}` : undefined },
+    { label: "Phone", value: phone, href: phone ? `tel:${phone.replace(/[^\d+]/g, "")}` : undefined },
+    { label: "Address", value: address, href: undefined },
   ];
 
   return (
-    <section id="contact" aria-labelledby="contact-heading" className="bg-white py-20 sm:py-28">
-      <div className="mx-auto grid max-w-6xl gap-12 px-4 sm:px-6 lg:grid-cols-12 lg:gap-16 lg:px-8">
-        <div className="lg:col-span-5">
-          <SectionLabel>Contact Us</SectionLabel>
-          <h2 id="contact-heading" className="mt-5 font-serif text-4xl leading-tight text-ink sm:text-5xl">
-            Start a conversation
-          </h2>
-          <p className="mt-5 text-base leading-[1.8] text-ink-soft sm:text-lg">
-            Tell us about the support you need, or refer a student or senior citizen who may need
-            assistance.
-          </p>
+    <section id="contact" aria-labelledby="contact-heading" className="py-28 sm:py-36 lg:py-44">
+      <div className="wrap">
+        <div className="reveal grid gap-y-10 border-t border-ink pt-6 lg:grid-cols-12 lg:gap-x-8">
+          <div className="lg:col-span-3">
+            <SectionLabel index="03">Contact Us</SectionLabel>
+          </div>
+          <div className="lg:col-span-9">
+            <h2
+              id="contact-heading"
+              className="font-serif text-[clamp(2.4rem,5.2vw,4.75rem)] font-light leading-[1.02] tracking-[-0.02em] text-ink"
+            >
+              Start a <em className="font-light">conversation</em>
+            </h2>
+            <p className="mt-8 max-w-xl text-lg leading-[1.65] text-ink-soft">
+              Tell us about the support you need, or refer a student or senior citizen who may need
+              assistance.
+            </p>
+          </div>
+        </div>
 
-          <ul className="mt-10 space-y-6">
-            {details.map(({ label, value, href, Icon }) => (
-              <li key={label} className="flex gap-4">
-                <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-gold-soft text-gold-dark">
-                  <Icon className="h-5 w-5" />
-                </span>
-                <div className="min-w-0">
-                  <p className="text-xs font-semibold uppercase tracking-[0.2em] text-ink-soft">{label}</p>
+        <div className="mt-16 grid gap-y-16 lg:mt-24 lg:grid-cols-12 lg:gap-x-8">
+          {/* Details */}
+          <dl className="reveal lg:col-span-3">
+            {details.map(({ label, value, href }) => (
+              <div key={label} className="border-t border-rule py-5">
+                <dt className="text-sm font-medium text-ink">{label}</dt>
+                <dd className="mt-1.5 text-base">
                   {value ? (
                     href ? (
-                      <a href={href} className="mt-1 block break-words text-base font-medium text-ink hover:text-gold-dark">
+                      <a href={href} className="text-link break-words text-ink">
                         {value}
                       </a>
                     ) : (
-                      <p className="mt-1 whitespace-pre-line text-base font-medium text-ink">{value}</p>
+                      <span className="whitespace-pre-line text-ink">{value}</span>
                     )
                   ) : (
-                    <p className="mt-1 text-base italic text-ink-soft/70">To be updated</p>
+                    <span className="text-muted">To be updated</span>
                   )}
-                </div>
-              </li>
+                </dd>
+              </div>
             ))}
-          </ul>
-        </div>
+            <div className="border-y border-rule py-5">
+              <dt className="text-sm font-medium text-ink">Follow Us</dt>
+              <dd className="mt-3 text-base">
+                {activeSocial.length > 0 ? <SocialLinks /> : <span className="text-muted">To be updated</span>}
+              </dd>
+            </div>
+          </dl>
 
-        <div className="lg:col-span-7">
-          <div className="relative rounded-3xl border border-line bg-cream p-6 sm:p-10">
-            <ContactForm />
+          {/* Form */}
+          <div className="reveal lg:col-span-8 lg:col-start-4 xl:col-span-7">
+            <div className="border-t border-ink pt-6">
+              <h3 className="font-serif text-3xl font-light text-ink sm:text-4xl">Request Support</h3>
+              <p className="mt-3 text-sm text-muted">
+                Fields marked <span className="text-gold-dark">*</span> are required.
+              </p>
+            </div>
+            <div className="mt-10">
+              <ContactForm />
+            </div>
           </div>
         </div>
       </div>

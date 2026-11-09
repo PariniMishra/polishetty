@@ -1,19 +1,19 @@
 import type { Metadata, Viewport } from "next";
-import { DM_Serif_Display, Montserrat } from "next/font/google";
+import { Instrument_Sans, Newsreader } from "next/font/google";
 import { site } from "@/content/site";
 import "./globals.css";
 
-const serif = DM_Serif_Display({
+const serif = Newsreader({
   subsets: ["latin"],
-  weight: "400",
   style: ["normal", "italic"],
-  variable: "--font-dm-serif",
+  axes: ["opsz"],
+  variable: "--font-newsreader",
   display: "swap",
 });
 
-const sans = Montserrat({
+const sans = Instrument_Sans({
   subsets: ["latin"],
-  variable: "--font-montserrat",
+  variable: "--font-instrument",
   display: "swap",
 });
 
@@ -38,7 +38,7 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#1c1d18",
+  themeColor: "#fbfaf7",
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

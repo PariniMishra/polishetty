@@ -20,6 +20,7 @@ When email isn't set up yet, the form still works in development: each enquiry p
 | What | File |
 | --- | --- |
 | Contact email, phone, address | `src/content/site.ts` |
+| Social media links (Instagram, Facebook, LinkedIn, YouTube, X) | `src/content/site.ts` → `social`; only platforms with a URL are shown |
 | Navigation links, form "Support Needed" options | `src/content/site.ts` |
 | Hero text | `src/components/Hero.tsx` |
 | About Us text | `src/components/About.tsx` |
@@ -29,6 +30,13 @@ When email isn't set up yet, the form still works in development: each enquiry p
 | Brand colours and fonts | `src/app/globals.css`, `src/app/layout.tsx` |
 | Logo | `public/logo.png` (dark), `public/logo-light.png` (for the dark footer) |
 | Browser tab icon | `src/app/icon.svg` |
+| Photographs, alt text and credits | `src/content/photos.ts`, files in `src/assets/photos/` |
+
+### Photographs
+
+The photos are **illustrative** images from Wikimedia Commons, used under Creative Commons licences (CC BY 2.0, CC BY 3.0, CC BY-SA 4.0). They do not show Polishetty Foundation beneficiaries. The footer states this and lists the required credits (author, licence, source link). If you change or add a photo, keep its credit entry in `src/content/photos.ts` up to date.
+
+When the foundation has its own photos, taken with consent from the people in them, replace the files in `src/assets/photos/` and update the matching entries in `photos.ts`. Once no Creative Commons images remain, you can remove the disclosure line in `src/components/Footer.tsx`.
 
 Brand colours, sampled from the logo: gold `#AB8018`, near-black `#1C1D18`, off-white `#F8F8F8`. A darker gold, `#8A6612`, is used for small text so it stays readable.
 

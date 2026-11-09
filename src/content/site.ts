@@ -15,6 +15,19 @@ export const site = {
     address: "", // e.g. "12 MG Road, Bengaluru, Karnataka 560001, India"
   } as { email: string; phone: string; address: string },
 
+  /**
+   * Social media profiles. Paste the full profile URL for each account the
+   * foundation has. Only platforms with a URL are shown on the site; if all
+   * are empty, the Contact section shows "To be updated".
+   */
+  social: {
+    instagram: "", // e.g. "https://www.instagram.com/polishettyfoundation"
+    facebook: "", // e.g. "https://www.facebook.com/polishettyfoundation"
+    linkedin: "", // e.g. "https://www.linkedin.com/company/polishetty-foundation"
+    youtube: "", // e.g. "https://www.youtube.com/@polishettyfoundation"
+    x: "", // e.g. "https://x.com/polishettyfdn"
+  } as Record<"instagram" | "facebook" | "linkedin" | "youtube" | "x", string>,
+
   nav: [
     { label: "About Us", href: "#about" },
     { label: "Our Focus", href: "#focus" },

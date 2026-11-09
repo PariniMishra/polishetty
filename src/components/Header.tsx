@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import { site } from "@/content/site";
+import { ArrowIcon } from "./Icons";
 
 export default function Header() {
   const [open, setOpen] = useState(false);
@@ -19,91 +20,83 @@ export default function Header() {
     if (!open) return;
     const onKey = (e: KeyboardEvent) => e.key === "Escape" && setOpen(false);
     window.addEventListener("keydown", onKey);
-    return () => window.removeEventListener("keydown", onKey);
+    document.body.style.overflow = "hidden";
+    return () => {
+      window.removeEventListener("keydown", onKey);
+      document.body.style.overflow = "";
+    };
   }, [open]);
 
   return (
     <header
-      className={`sticky top-0 z-50 border-b transition-colors duration-300 ${
-        scrolled || open
-          ? "border-line bg-paper/95 backdrop-blur"
-          : "border-transparent bg-paper"
+      className={`fixed inset-x-0 top-0 z-50 bg-paper transition-[border-color] duration-300 ${
+        scrolled || open ? "border-b border-rule" : "border-b border-transparent"
       }`}
     >
-      <div className="mx-auto flex h-18 max-w-6xl items-center justify-between px-4 sm:px-6 lg:px-8">
+      <div className="wrap flex h-18 items-center justify-between lg:h-20">
         <a href="#top" aria-label={`${site.name} home`} className="shrink-0">
-          <Image
-            src="/logo.png"
-            alt={site.name}
-            width={1050}
-            height={295}
-            priority
-            className="h-10 w-auto sm:h-11"
-          />
+          <Image src="/logo.png" alt="" width={1050} height={295} preload className="h-9 w-auto lg:h-10" />
         </a>
 
-        <nav aria-label="Main" className="hidden items-center gap-9 md:flex">
+        <nav aria-label="Main" className="hidden items-center gap-10 md:flex">
           {site.nav.map((item) => (
             <a
               key={item.href}
               href={item.href}
-              className="text-sm font-medium text-ink-soft transition-colors hover:text-gold-dark"
+              className="text-[0.9375rem] font-medium text-ink underline-offset-[0.4em] decoration-1 hover:underline"
             >
               {item.label}
             </a>
           ))}
           <a
             href="#contact"
-            className="rounded-full bg-ink px-5 py-2.5 text-sm font-semibold text-paper transition-colors hover:bg-gold hover:text-ink"
+            className="group inline-flex items-center gap-3 bg-ink px-5 py-3 text-[0.9375rem] font-medium text-paper transition-colors hover:bg-gold-dark"
           >
             Request Support
+            <ArrowIcon className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
           </a>
         </nav>
 
         <button
           type="button"
-          className="-mr-2 inline-flex h-11 w-11 items-center justify-center rounded-md text-ink md:hidden"
+          className="-mr-2 inline-flex h-11 items-center gap-2 px-2 text-sm font-medium text-ink md:hidden"
           aria-expanded={open}
           aria-controls="mobile-menu"
-          aria-label={open ? "Close menu" : "Open menu"}
           onClick={() => setOpen((v) => !v)}
         >
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" aria-hidden="true">
-            {open ? (
-              <path d="M6 6l12 12M18 6L6 18" />
-            ) : (
-              <path d="M4 7h16M4 12h16M4 17h16" />
-            )}
+          {open ? "Close" : "Menu"}
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" aria-hidden="true">
+            {open ? <path d="M6 6l12 12M18 6L6 18" /> : <path d="M4 9h16M4 15h16" />}
           </svg>
         </button>
       </div>
 
       {open && (
-        <nav
-          id="mobile-menu"
-          aria-label="Mobile"
-          className="border-t border-line bg-paper px-4 pb-6 pt-2 md:hidden"
-        >
-          <ul className="flex flex-col">
-            {site.nav.map((item) => (
-              <li key={item.href}>
+        <nav id="mobile-menu" aria-label="Mobile" className="h-[calc(100dvh-4.5rem)] overflow-y-auto bg-paper md:hidden">
+          <ul className="wrap pt-6">
+            {site.nav.map((item, i) => (
+              <li key={item.href} className="border-b border-rule">
                 <a
                   href={item.href}
                   onClick={() => setOpen(false)}
-                  className="block border-b border-line py-4 text-base font-medium text-ink"
+                  className="flex items-baseline gap-5 py-6 font-serif text-4xl font-light text-ink"
                 >
+                  <span className="font-sans text-sm tabular-nums text-gold-dark">0{i + 1}</span>
                   {item.label}
                 </a>
               </li>
             ))}
           </ul>
-          <a
-            href="#contact"
-            onClick={() => setOpen(false)}
-            className="mt-5 block rounded-full bg-ink px-5 py-3.5 text-center text-sm font-semibold text-paper"
-          >
-            Request Support
-          </a>
+          <div className="wrap pt-10">
+            <a
+              href="#contact"
+              onClick={() => setOpen(false)}
+              className="flex items-center justify-between bg-ink px-6 py-5 text-base font-medium text-paper"
+            >
+              Request Support
+              <ArrowIcon className="h-5 w-5" />
+            </a>
+          </div>
         </nav>
       )}
     </header>
