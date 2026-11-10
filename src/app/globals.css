@@ -1,21 +1,36 @@
 @import "tailwindcss";
 
 @theme {
-  /* Brand colours sampled from the logo, used with restraint */
+  /* ---------------------------------------------------------------
+     Palette: evergreen (primary) + logo gold (accent) on warm paper.
+       brand      – large surfaces, buttons, heading accents
+       gold       – small accents only: labels, numbers, highlights
+       neutrals   – warm paper/sand, with text tinted toward the green
+     Contrast: paper on brand ≈ 10:1, gold-light on brand ≈ 5.5:1,
+     gold-dark on paper ≈ 5:1, muted on paper ≈ 4.8:1.
+     --------------------------------------------------------------- */
+  --color-brand: #1f4337;
+  --color-brand-deep: #152f27;
+  --color-brand-tint: #e9efe9; /* quiet green wash for panels */
+
+  /* Brand gold sampled from the logo */
   --color-gold: #ab8018;
   --color-gold-dark: #8a6612; /* AA on light backgrounds */
-  --color-gold-light: #d4ad4f; /* AA on ink */
+  --color-gold-light: #dbb85e; /* AA on brand / brand-deep */
 
-  /* Neutral, warm institutional palette */
-  --color-ink: #1c1d18;
-  --color-ink-soft: #4d4e47;
-  --color-muted: #6b6c65;
-  --color-paper: #fbfaf7;
-  --color-stone: #f1ede5;
-  --color-rule: #d9d4c8;
+  /* Warm neutrals, text tinted to sit with the evergreen */
+  --color-ink: #18201c;
+  --color-ink-soft: #46514b;
+  --color-muted: #66706a;
+  --color-paper: #fbf9f4;
+  --color-stone: #f2ede2; /* sand */
+  --color-rule: #dbd5c7;
+  --color-danger: #a12a1f;
+  --color-danger-tint: #fbefec;
 
-  --font-serif: var(--font-newsreader), Georgia, "Times New Roman", serif;
-  --font-sans: var(--font-instrument), system-ui, -apple-system, "Segoe UI", sans-serif;
+  /* DM Serif Display for headings, Source Sans 3 for reading text */
+  --font-serif: var(--font-dm-serif), Georgia, "Times New Roman", serif;
+  --font-sans: var(--font-source-sans), system-ui, -apple-system, "Segoe UI", sans-serif;
 }
 
 @layer components {
@@ -37,6 +52,157 @@
     }
   }
 
+  /* Vertical rhythm shared by every major section */
+  .section {
+    padding-block: 5.5rem;
+  }
+  @media (width >= 40rem) {
+    .section {
+      padding-block: 7rem;
+    }
+  }
+  @media (width >= 64rem) {
+    .section {
+      padding-block: 9rem;
+    }
+  }
+
+  /* ---------------------------------------------------------------
+     Type scale. Each tier is visibly distinct from the next.
+       display   – the hero h1 only
+       headline  – section h2s
+       statement – pull quotes / commitments; always below headline
+       title     – h3s inside a section
+       lead      – the first paragraph under a heading
+       eyebrow   – small uppercase signposts (section index, kickers)
+     --------------------------------------------------------------- */
+  .type-display {
+    font-family: var(--font-serif);
+    font-weight: 400;
+    font-size: clamp(2.75rem, 5.2vw, 4.75rem);
+    line-height: 1.02;
+    letter-spacing: -0.018em;
+  }
+  .type-headline {
+    font-family: var(--font-serif);
+    font-weight: 400;
+    font-size: clamp(2.35rem, 4.6vw, 4.25rem);
+    line-height: 1.04;
+    letter-spacing: -0.014em;
+  }
+  .type-statement {
+    font-family: var(--font-serif);
+    font-weight: 400;
+    font-size: clamp(1.5rem, 2.5vw, 2.3rem);
+    line-height: 1.26;
+    letter-spacing: -0.004em;
+  }
+  .type-title {
+    font-family: var(--font-serif);
+    font-weight: 400;
+    font-size: clamp(1.55rem, 2.3vw, 2.15rem);
+    line-height: 1.12;
+    letter-spacing: -0.005em;
+  }
+  .type-lead {
+    font-size: clamp(1.125rem, 1.45vw, 1.3125rem);
+    line-height: 1.6;
+  }
+  .type-eyebrow {
+    font-family: var(--font-sans);
+    font-size: 0.75rem;
+    font-weight: 700;
+    line-height: 1.4;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+  }
+
+  /* Buttons: square-cornered, confident, with a sliding arrow */
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    padding: 0.95rem 1.6rem;
+    font-size: 1rem;
+    font-weight: 600;
+    line-height: 1.2;
+    transition:
+      background-color 0.25s ease,
+      color 0.25s ease,
+      border-color 0.25s ease;
+  }
+  .btn svg {
+    width: 1rem;
+    height: 1rem;
+    transition: transform 0.25s ease;
+  }
+  .btn:hover svg {
+    transform: translateX(3px);
+  }
+  .btn-primary {
+    background: var(--color-brand);
+    color: var(--color-paper);
+  }
+  .btn-primary:hover {
+    background: var(--color-brand-deep);
+  }
+  .btn-light {
+    background: var(--color-paper);
+    color: var(--color-brand-deep);
+  }
+  .btn-light:hover {
+    background: var(--color-gold-light);
+  }
+  .btn-outline {
+    border: 1px solid currentColor;
+    padding: calc(0.95rem - 1px) calc(1.6rem - 1px);
+  }
+  .btn-outline:hover {
+    background: var(--color-brand);
+    border-color: var(--color-brand);
+    color: var(--color-paper);
+  }
+
+  /* Outline button for dark/photographic backgrounds */
+  .btn-ghost-light {
+    border: 1px solid color-mix(in srgb, var(--color-paper) 55%, transparent);
+    padding: calc(0.95rem - 1px) calc(1.6rem - 1px);
+    color: var(--color-paper);
+  }
+  .btn-ghost-light:hover {
+    background: var(--color-paper);
+    border-color: var(--color-paper);
+    color: var(--color-brand-deep);
+  }
+
+  /* "Learn more"-style link with a thick gold underline */
+  .link-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    font-weight: 600;
+    text-decoration-line: underline;
+    text-decoration-thickness: 2px;
+    text-underline-offset: 0.4em;
+    text-decoration-color: var(--color-gold);
+    transition:
+      color 0.2s ease,
+      text-decoration-color 0.2s ease;
+  }
+  .link-cta:hover {
+    color: var(--color-brand);
+    text-decoration-color: currentColor;
+  }
+  .link-cta svg {
+    width: 1rem;
+    height: 1rem;
+    transition: transform 0.25s ease;
+  }
+  .link-cta:hover svg {
+    transform: translateX(3px);
+  }
+
   /* Editorial text link: hairline underline that thickens on hover */
   .text-link {
     text-decoration-line: underline;
@@ -47,6 +213,32 @@
   }
   .text-link:hover {
     text-decoration-color: currentColor;
+  }
+
+  /* Photograph frame with a slow zoom when its card is hovered */
+  .photo {
+    position: relative;
+    overflow: hidden;
+    background: var(--color-stone);
+  }
+  .photo img {
+    transition: transform 1.1s cubic-bezier(0.2, 0.7, 0.2, 1);
+  }
+  .group:hover .photo img {
+    transform: scale(1.035);
+  }
+
+  /* Small "Illustrative photograph" tag set on top of an image */
+  .photo-tag {
+    position: absolute;
+    left: 0.75rem;
+    bottom: 0.75rem;
+    padding: 0.3rem 0.55rem;
+    font-size: 0.6875rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    color: var(--color-paper);
+    background: color-mix(in srgb, var(--color-ink) 62%, transparent);
   }
 }
 
@@ -59,13 +251,15 @@ body {
   background-color: var(--color-paper);
   color: var(--color-ink);
   font-family: var(--font-sans);
+  font-size: 1.0625rem;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
   font-feature-settings: "kern", "liga";
 }
 
-section[id] {
-  scroll-margin-top: 5rem;
+section[id],
+[id^="focus-"] {
+  scroll-margin-top: 5.5rem;
 }
 
 h1,
@@ -80,7 +274,7 @@ blockquote {
 }
 
 ::selection {
-  background: var(--color-ink);
+  background: var(--color-brand);
   color: var(--color-paper);
 }
 
@@ -114,10 +308,79 @@ blockquote {
   .intro {
     animation: rise 1.1s cubic-bezier(0.2, 0.7, 0.2, 1) both;
   }
+
+  /* Hero entrance: headline lines rise out of a mask, the rest fades up */
+  .hero-rise {
+    animation: hero-rise 1.25s cubic-bezier(0.16, 0.84, 0.3, 1) both;
+  }
+  .hero-fade {
+    animation: rise 1.1s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+  }
+  .hero-draw {
+    transform-origin: left;
+    animation: hero-draw 1.2s cubic-bezier(0.65, 0, 0.35, 1) both;
+  }
+  /* Slow, continuous camera drift over the film */
+  .hero-drift {
+    animation: hero-drift 26s ease-in-out infinite alternate;
+  }
+  .scroll-cue {
+    animation: scroll-cue 2.4s cubic-bezier(0.65, 0, 0.35, 1) infinite;
+  }
+}
+
+@keyframes hero-rise {
+  from {
+    transform: translateY(108%);
+  }
+  to {
+    transform: none;
+  }
+}
+@keyframes hero-draw {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+@keyframes hero-drift {
+  from {
+    transform: scale(1.03);
+  }
+  to {
+    transform: scale(1.12) translate3d(-1.5%, -1%, 0);
+  }
+}
+@keyframes scroll-cue {
+  0% {
+    transform: scaleY(0);
+    transform-origin: top;
+  }
+  50% {
+    transform: scaleY(1);
+    transform-origin: top;
+  }
+  50.1% {
+    transform-origin: bottom;
+  }
+  100% {
+    transform: scaleY(0);
+    transform-origin: bottom;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
+  }
+  .photo img,
+  .btn svg,
+  .link-cta svg {
+    transition: none;
+  }
+  .group:hover .photo img {
+    transform: none;
   }
 }

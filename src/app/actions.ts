@@ -1,9 +1,10 @@
 "use server";
 
 import { headers } from "next/headers";
-import { site, supportOptions } from "@/content/site";
+import { site } from "@/content/site";
+import { readEnquiry, validateEnquiry, type FieldName } from "@/lib/enquiry";
 
-export type FieldName = "name" | "phone" | "email" | "location" | "support" | "message" | "consent";
+export type { FieldName };
 
 export type EnquiryState = {
   status: "idle" | "success" | "error";
@@ -37,28 +38,9 @@ export async function sendEnquiry(_prev: EnquiryState, formData: FormData): Prom
     return { status: "success" };
   }
 
-  const data = {
-    name: str(formData.get("name"), 100),
-    phone: str(formData.get("phone"), 20),
-    email: str(formData.get("email"), 150),
-    location: str(formData.get("location"), 100),
-    support: str(formData.get("support"), 40),
-    message: str(formData.get("message"), 3000),
-    consent: formData.get("consent") === "on",
-  };
-
-  const fieldErrors: EnquiryState["fieldErrors"] = {};
-  if (data.name.length < 2) fieldErrors.name = "Please enter your name.";
-  const digits = data.phone.replace(/\D/g, "");
-  if (!/^[+\d][\d\s-]*$/.test(data.phone) || digits.length < 10 || digits.length > 13)
-    fieldErrors.phone = "Please enter a valid phone number.";
-  if (data.email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(data.email))
-    fieldErrors.email = "Please enter a valid email address, or leave it blank.";
-  if (data.location.length < 2) fieldErrors.location = "Please enter your city and state.";
-  if (!(supportOptions as readonly string[]).includes(data.support))
-    fieldErrors.support = "Please choose the type of support needed.";
-  if (data.message.length < 10) fieldErrors.message = "Please tell us a little more (at least 10 characters).";
-  if (!data.consent) fieldErrors.consent = "Please agree to be contacted so we can respond.";
+  // Same rules the form checks in the browser (src/lib/enquiry.ts); the server stays authoritative.
+  const data = readEnquiry(formData);
+  const fieldErrors = validateEnquiry(data);
 
   if (Object.keys(fieldErrors).length > 0) {
     return { status: "error", message: "Please check the highlighted fields.", fieldErrors };

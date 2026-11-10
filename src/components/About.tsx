@@ -1,82 +1,72 @@
+import Image from "next/image";
 import SectionLabel from "./SectionLabel";
+import { photos, type Photo } from "@/content/photos";
 
 export default function About() {
   return (
     <section id="about" aria-labelledby="about-heading">
-      {/* Opening */}
-      <div className="wrap pt-28 sm:pt-36 lg:pt-44">
-        <div className="reveal grid gap-y-10 border-t border-ink pt-6 lg:grid-cols-12 lg:gap-x-8">
-          <div className="lg:col-span-3">
+      {/* Introduction */}
+      <div className="wrap section">
+        <div className="grid items-center gap-y-14 lg:grid-cols-12 lg:gap-x-12">
+          <div className="reveal lg:col-span-6 xl:col-span-5">
             <SectionLabel index="01">About Us</SectionLabel>
-          </div>
-          <div className="lg:col-span-9">
-            <h2 id="about-heading" className="text-sm font-medium text-gold-dark">
-              Polishetty Foundation
+            <h2 id="about-heading" className="type-headline mt-8 text-ink">
+              Empowering Lives. Inspiring Hope. <em className="text-brand">Creating Lasting Change.</em>
             </h2>
-            <p className="mt-6 font-serif text-[clamp(2.4rem,5.2vw,4.75rem)] font-light leading-[1.02] tracking-[-0.02em] text-ink">
-              Empowering Lives. Inspiring Hope. <em className="font-light">Creating Lasting Change.</em>
-            </p>
-            <p className="mt-12 max-w-2xl text-xl leading-[1.6] text-ink-soft sm:text-[1.375rem]">
+            <p className="type-lead mt-8 text-ink-soft">
               <span className="text-ink">Polishetty Foundation</span> was established in India with a
-              simple yet meaningful purpose: to bring hope, dignity, and opportunity to those who need
-              it most.
+              simple yet meaningful purpose: to bring hope, dignity, and opportunity to those who need it
+              most.
             </p>
+            <p className="mt-5 text-lg leading-[1.7] text-ink-soft">
+              At its heart, Polishetty Foundation is more than a charitable initiative. It is a tribute to
+              our parents&apos; values and a commitment to carrying their vision forward through purposeful
+              action.
+            </p>
+            <a href="#commitment" className="link-cta mt-9 text-ink">
+              Read our story
+            </a>
           </div>
-        </div>
-      </div>
-
-      {/* Our story: the parents' inspiration */}
-      <div className="mt-28 bg-stone sm:mt-36 lg:mt-44">
-        <div className="wrap py-24 sm:py-32 lg:py-40">
-          <div className="reveal grid gap-y-10 lg:grid-cols-12 lg:gap-x-8">
-            <div className="lg:col-span-3">
-              <SectionLabel>Our story</SectionLabel>
+          <figure className="reveal lg:col-span-6 xl:col-span-7">
+            <div className="photo aspect-[4/3]">
+              <Image
+                src={photos.outdoorClass.image}
+                alt={photos.outdoorClass.alt}
+                fill
+                placeholder="blur"
+                sizes="(min-width: 1024px) 55vw, 100vw"
+                className="object-cover"
+              />
+              <span className="photo-tag">Illustrative photograph</span>
             </div>
-            <div className="lg:col-span-9">
-              <blockquote>
-                <p className="font-serif text-[clamp(1.85rem,3.4vw,3.1rem)] font-light leading-[1.18] tracking-[-0.01em] text-ink">
-                  &ldquo;Inspired by the compassion, values, and lifelong vision of our parents, the
-                  Foundation reflects their belief that everyone deserves an opportunity to learn,
-                  grow, and live with dignity, regardless of their financial or social
-                  circumstances.&rdquo;
-                </p>
-              </blockquote>
-              <div className="mt-14 grid gap-8 border-t border-rule pt-8 md:grid-cols-9 md:gap-x-8">
-                <p className="text-sm font-medium text-ink md:col-span-3">A tribute to our parents&apos; values</p>
-                <p className="text-lg leading-[1.65] text-ink-soft md:col-span-6">
-                  At its heart, Polishetty Foundation is more than a charitable initiative. It is a
-                  tribute to our parents&apos; values and a commitment to carrying their vision forward
-                  through purposeful action.
-                </p>
-              </div>
-            </div>
-          </div>
+          </figure>
         </div>
       </div>
 
       {/* Mission: two pillars */}
-      <div className="wrap pt-28 sm:pt-36 lg:pt-44">
-        <div className="reveal grid gap-y-10 lg:grid-cols-12 lg:gap-x-8">
-          <div className="lg:col-span-3">
-            <SectionLabel>Our mission</SectionLabel>
+      <div id="mission" className="scroll-mt-20 bg-stone">
+        <div className="wrap section">
+          <div className="reveal grid gap-y-8 lg:grid-cols-12 lg:gap-x-12">
+            <p className="type-eyebrow text-gold-dark lg:col-span-3 lg:pt-3">Our Mission</p>
+            <p className="type-statement text-ink-soft lg:col-span-9">
+              Our mission focuses on two important pillars:{" "}
+              <em className="text-brand">empowering underprivileged children through education</em> and{" "}
+              <em className="text-brand">supporting senior citizens through compassionate care and welfare initiatives</em>.
+            </p>
           </div>
-          <p className="font-serif text-[clamp(1.6rem,2.6vw,2.4rem)] font-light leading-[1.25] text-ink lg:col-span-8">
-            Our mission focuses on two important pillars:{" "}
-            <em>empowering underprivileged children through education</em> and{" "}
-            <em>supporting senior citizens through compassionate care and welfare initiatives</em>.
-          </p>
-        </div>
 
-        <div className="mt-16 grid gap-x-8 lg:grid-cols-12 lg:mt-24">
-          <div className="grid gap-x-8 gap-y-14 md:grid-cols-2 lg:col-span-9 lg:col-start-4">
+          <div className="mt-16 grid gap-x-10 gap-y-16 md:grid-cols-2 lg:mt-24">
             <Pillar
               number="01"
               title="Education"
+              photo={photos.children}
               body="We believe education has the power to transform generations. By helping children access educational resources, guidance, and opportunities, we aim to build a foundation for brighter, more independent futures."
             />
             <Pillar
               number="02"
               title="Senior citizens"
+              photo={photos.elder}
+              position="object-[50%_30%]"
               body="Equally important is our commitment to senior citizens. We strive to bring comfort, care, respect, and meaningful support to elderly individuals who may lack the resources or assistance they deserve."
             />
           </div>
@@ -84,32 +74,61 @@ export default function About() {
       </div>
 
       {/* Belief */}
-      <div className="wrap pb-28 pt-28 sm:pb-36 sm:pt-36 lg:pb-44 lg:pt-44">
-        <figure className="reveal border-t border-ink pt-6">
-          <figcaption className="text-sm font-medium text-ink">Our belief is simple</figcaption>
-          <blockquote className="mt-10 lg:mt-14">
-            <p className="max-w-[18ch] font-serif text-[clamp(2.6rem,6.2vw,6rem)] font-light leading-[1] tracking-[-0.025em] text-ink sm:max-w-[20ch]">
+      <div className="wrap section">
+        <figure className="reveal mx-auto max-w-5xl text-center">
+          <figcaption className="type-eyebrow flex items-center justify-center gap-4 text-gold-dark">
+            <span aria-hidden="true" className="h-px w-10 bg-gold" />
+            Our belief is simple
+            <span aria-hidden="true" className="h-px w-10 bg-gold" />
+          </figcaption>
+          <blockquote className="mt-10">
+            <p className="font-serif text-[clamp(1.85rem,3.4vw,3rem)] leading-[1.18] tracking-[-0.008em] text-ink">
               Every child deserves a chance to succeed, and every senior deserves to live with{" "}
-              <em className="text-gold-dark">dignity.</em>
+              <em className="text-brand">dignity.</em>
             </p>
           </blockquote>
-          <div className="mt-14 grid lg:grid-cols-12 lg:gap-x-8">
-            <p className="font-serif text-2xl font-light italic leading-snug text-ink-soft lg:col-span-5 lg:col-start-8">
-              Together, we hope to make a meaningful difference—one life at a time.
-            </p>
-          </div>
+          <p className="mx-auto mt-10 max-w-md text-lg italic leading-relaxed text-ink-soft">
+            Together, we hope to make a meaningful difference, one life at a time.
+          </p>
         </figure>
       </div>
     </section>
   );
 }
 
-function Pillar({ number, title, body }: { number: string; title: string; body: string }) {
+function Pillar({
+  number,
+  title,
+  body,
+  photo,
+  position = "object-center",
+}: {
+  number: string;
+  title: string;
+  body: string;
+  photo: Photo;
+  position?: string;
+}) {
   return (
-    <article className="reveal border-t border-rule pt-6">
-      <p className="font-serif text-6xl font-extralight leading-none tabular-nums text-gold-dark">{number}</p>
-      <h3 className="mt-8 text-sm font-medium text-ink">{title}</h3>
-      <p className="mt-3 text-lg leading-[1.65] text-ink-soft">{body}</p>
+    <article className="reveal group">
+      <div className="photo aspect-[3/2]">
+        <Image
+          src={photo.image}
+          alt={photo.alt}
+          fill
+          placeholder="blur"
+          sizes="(min-width: 768px) 45vw, 100vw"
+          className={`object-cover ${position}`}
+        />
+        <span className="photo-tag">Illustrative photograph</span>
+      </div>
+      <div className="mt-8 flex items-baseline gap-5 border-t border-brand/25 pt-6">
+        <span className="type-eyebrow tabular-nums text-gold-dark">{number}</span>
+        <div>
+          <h3 className="type-title text-ink">{title}</h3>
+          <p className="mt-4 text-lg leading-[1.7] text-ink-soft">{body}</p>
+        </div>
+      </div>
     </article>
   );
 }

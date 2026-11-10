@@ -1,146 +1,125 @@
 import Image from "next/image";
 import SectionLabel from "./SectionLabel";
-import { photos, type Photo } from "@/content/photos";
-
-const education = {
-  title: "Education & Child Empowerment",
-  lead: "Every child deserves an opportunity to succeed.",
-  body: "We are committed to supporting children from economically disadvantaged backgrounds by providing educational assistance, scholarships, school supplies, mentorship, and access to learning opportunities that help them build brighter futures.",
-};
-
-const seniors = {
-  title: "Senior Citizen Care & Welfare",
-  lead: "Every senior deserves dignity, respect, and care.",
-  body: "We aim to support elderly individuals facing financial hardship, isolation, or limited access to essential services. Our initiatives focus on healthcare assistance, basic necessities, emotional well-being, and improving their quality of life.",
-};
-
-const community = {
-  title: "Community Support & Compassion",
-  lead: "Small acts of kindness can create lasting change.",
-  body: "Beyond education and senior welfare, we strive to support vulnerable families and communities through essential assistance, compassionate outreach, and initiatives that promote self-reliance and well-being.",
-};
+import SupportLink from "./SupportLink";
+import { ArrowIcon } from "./Icons";
+import { focusAreas, type FocusArea } from "@/content/focus";
 
 export default function Focus() {
+  const [education, seniors, community] = focusAreas;
+
   return (
-    <section id="focus" aria-labelledby="focus-heading">
-      {/* Intro */}
-      <div className="wrap">
-        <div className="reveal grid gap-y-10 border-t border-ink pt-6 lg:grid-cols-12 lg:gap-x-8">
-          <div className="lg:col-span-3">
-            <SectionLabel index="02">Our Focus</SectionLabel>
-          </div>
-          <div className="lg:col-span-9">
-            <h2
-              id="focus-heading"
-              className="font-serif text-[clamp(2.4rem,5.2vw,4.75rem)] font-light leading-[1.02] tracking-[-0.02em] text-ink"
-            >
-              Creating Opportunities. Enriching Lives. <em className="font-light">Building a Better Tomorrow.</em>
-            </h2>
-            <div className="mt-12 grid gap-6 text-lg leading-[1.65] text-ink-soft md:grid-cols-2 md:gap-8">
-              <p>
-                At <span className="text-ink">Polishetty Foundation</span>, our focus is on making a
-                meaningful and lasting difference in the lives of underprivileged children and senior
-                citizens across India.
-              </p>
-              <p>
-                We believe that access to education, compassionate care, and basic necessities should
-                never be limited by financial circumstances.
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      {/* Pillar one: full-width plate, text in three columns below */}
-      <article className="wrap mt-24 sm:mt-32 lg:mt-40">
-        <Plate photo={photos.reading} className="aspect-[4/3] sm:aspect-[16/9] lg:aspect-[21/9]" sizes="100vw" position="object-[50%_35%]" />
-        <div className="reveal mt-10 grid gap-y-6 lg:mt-14 lg:grid-cols-12 lg:gap-x-8">
-          <p className="text-sm font-medium text-gold-dark lg:col-span-3">Pillar 01</p>
-          <div className="lg:col-span-4">
-            <h3 className="font-serif text-4xl font-light leading-[1.05] tracking-[-0.015em] text-ink sm:text-5xl">
-              {education.title}
-            </h3>
-          </div>
-          <div className="lg:col-span-5">
-            <p className="font-serif text-2xl font-light italic leading-snug text-ink">{education.lead}</p>
-            <p className="mt-5 text-lg leading-[1.65] text-ink-soft">{education.body}</p>
-          </div>
-        </div>
-      </article>
-
-      {/* Pillar two: plate and text side by side */}
-      <article className="wrap mt-28 sm:mt-36 lg:mt-48">
-        <div className="grid items-end gap-y-10 lg:grid-cols-12 lg:gap-x-8">
+    <section id="focus" aria-labelledby="focus-heading" className="border-t border-rule">
+      <div className="wrap section">
+        {/* Intro */}
+        <div className="reveal grid gap-y-10 lg:grid-cols-12 lg:gap-x-12">
           <div className="lg:col-span-7">
-            <Plate photo={photos.elders} className="aspect-[4/3] lg:aspect-[5/4]" sizes="(min-width: 1024px) 58vw, 100vw" />
+            <SectionLabel index="02">Our Focus</SectionLabel>
+            <h2 id="focus-heading" className="type-headline mt-8 text-ink">
+              Creating Opportunities. Enriching Lives. <em className="text-brand">Building a Better Tomorrow.</em>
+            </h2>
           </div>
-          <div className="reveal lg:col-span-4 lg:col-start-9">
-            <p className="text-sm font-medium text-gold-dark">Pillar 02</p>
-            <h3 className="mt-6 font-serif text-4xl font-light leading-[1.05] tracking-[-0.015em] text-ink sm:text-5xl">
-              {seniors.title}
-            </h3>
-            <p className="mt-8 font-serif text-2xl font-light italic leading-snug text-ink">{seniors.lead}</p>
-            <p className="mt-5 text-lg leading-[1.65] text-ink-soft">{seniors.body}</p>
-          </div>
-        </div>
-      </article>
-
-      {/* Third focus area: present, but quieter than the two pillars */}
-      <article className="wrap mt-28 sm:mt-36 lg:mt-48">
-        <div className="reveal grid gap-y-8 border-t border-rule pt-6 lg:grid-cols-12 lg:gap-x-8">
-          <p className="text-sm font-medium text-gold-dark lg:col-span-3">Also in our focus</p>
-          <div className="lg:col-span-5">
-            <h3 className="font-serif text-3xl font-light leading-[1.1] text-ink sm:text-4xl">{community.title}</h3>
-            <p className="mt-6 font-serif text-xl font-light italic leading-snug text-ink">{community.lead}</p>
-            <p className="mt-4 text-lg leading-[1.65] text-ink-soft">{community.body}</p>
-          </div>
-          <div className="lg:col-span-4">
-            <Plate photo={photos.community} className="aspect-[4/3]" sizes="(min-width: 1024px) 33vw, 100vw" />
+          <div className="space-y-5 text-lg leading-[1.7] text-ink-soft lg:col-span-5 lg:self-end">
+            <p>
+              At <span className="text-ink">Polishetty Foundation</span>, our focus is on making a meaningful
+              and lasting difference in the lives of underprivileged children and senior citizens across
+              India.
+            </p>
+            <p>
+              We believe that access to education, compassionate care, and basic necessities should never be
+              limited by financial circumstances.
+            </p>
           </div>
         </div>
-      </article>
 
-      {/* Our Commitment */}
-      <div className="mt-28 bg-ink text-paper sm:mt-36 lg:mt-48">
-        <div className="wrap py-24 sm:py-32 lg:py-40">
-          <div className="reveal grid gap-y-10 lg:grid-cols-12 lg:gap-x-8">
-            <div className="lg:col-span-3">
-              <SectionLabel light>Our Commitment</SectionLabel>
-            </div>
-            <div className="lg:col-span-9">
-              <p className="font-serif text-[clamp(2.3rem,5vw,4.5rem)] font-light leading-[1.04] tracking-[-0.02em]">
-                <em className="font-light text-gold-light">Our purpose is simple:</em> Empower the young,
-                care for the elderly, and inspire a culture of giving.
-              </p>
-              <p className="mt-14 max-w-xl border-t border-paper/20 pt-8 text-lg leading-[1.65] text-paper/75">
-                Guided by our parents&apos; values of kindness, generosity, and service, we are dedicated
-                to creating sustainable opportunities and touching lives with compassion.
-              </p>
+        {/* Feature: Education */}
+        <article id={education.id} className="group mt-20 grid items-center gap-y-10 lg:mt-28 lg:grid-cols-12 lg:gap-x-12">
+          <div className="reveal lg:col-span-6">
+            <div className="photo aspect-[4/5] sm:aspect-[4/3] lg:aspect-[4/5]">
+              <Image
+                src={education.photo.image}
+                alt={education.photo.alt}
+                fill
+                placeholder="blur"
+                sizes="(min-width: 1024px) 50vw, 100vw"
+                className="object-cover object-[50%_20%]"
+              />
+              <span className="photo-tag">Illustrative photograph</span>
             </div>
           </div>
+          <div className="reveal lg:col-span-6 lg:pl-6 xl:col-span-5 xl:pl-0 xl:col-start-8">
+            <AreaText area={education} large />
+          </div>
+        </article>
+
+        {/* Two areas, offset for an editorial rhythm */}
+        <div className="mt-24 grid gap-y-20 lg:mt-36 lg:grid-cols-12 lg:gap-x-12">
+          <article id={seniors.id} className="reveal group lg:col-span-7">
+            <div className="photo aspect-[3/2]">
+              <Image
+                src={seniors.photo.image}
+                alt={seniors.photo.alt}
+                fill
+                placeholder="blur"
+                sizes="(min-width: 1024px) 55vw, 100vw"
+                className="object-cover object-[30%_40%]"
+              />
+              <span className="photo-tag">Illustrative photograph</span>
+            </div>
+            <div className="mt-10 max-w-xl">
+              <AreaText area={seniors} />
+            </div>
+          </article>
+
+          <article id={community.id} className="reveal group lg:col-span-5 lg:mt-48">
+            <div className="photo aspect-[4/3] lg:aspect-[5/6]">
+              <Image
+                src={community.photo.image}
+                alt={community.photo.alt}
+                fill
+                placeholder="blur"
+                sizes="(min-width: 1024px) 40vw, 100vw"
+                className="object-cover object-[40%_50%]"
+              />
+              <span className="photo-tag">Illustrative photograph</span>
+            </div>
+            <div className="mt-10">
+              <AreaText area={community} />
+            </div>
+          </article>
         </div>
       </div>
     </section>
   );
 }
 
-function Plate({
-  photo,
-  className,
-  sizes,
-  position = "object-center",
-}: {
-  photo: Photo;
-  className: string;
-  sizes: string;
-  position?: string;
-}) {
+function AreaText({ area, large }: { area: FocusArea; large?: boolean }) {
   return (
-    <figure>
-      <div className={`relative overflow-hidden bg-stone ${className}`}>
-        <Image src={photo.image} alt={photo.alt} fill placeholder="blur" sizes={sizes} className={`object-cover ${position}`} />
+    <>
+      <p className="type-eyebrow flex items-center gap-3 text-gold-dark">
+        <span className="tabular-nums">Focus area {area.index}</span>
+      </p>
+      <h3 className={`mt-5 text-ink ${large ? "type-headline !text-[clamp(2.2rem,3.6vw,3.4rem)]" : "type-title"}`}>
+        {area.title}
+      </h3>
+      <p className={`mt-6 font-serif italic text-brand ${large ? "text-[1.5rem] leading-snug" : "text-xl leading-snug"}`}>
+        {area.lead}
+      </p>
+      <p className="mt-5 text-lg leading-[1.7] text-ink-soft">{area.body}</p>
+      <div className="mt-8 border-t border-rule pt-6">
+        <p className="type-eyebrow text-muted">What we provide</p>
+        <ul className="mt-4 space-y-2.5">
+          {area.provides.map((item) => (
+            <li key={item} className="flex gap-3 text-[1.0625rem] leading-snug text-ink">
+              <span aria-hidden="true" className="mt-[0.55em] h-1.5 w-1.5 shrink-0 rounded-full bg-gold" />
+              {item}
+            </li>
+          ))}
+        </ul>
       </div>
-      <figcaption className="mt-3 text-[0.8125rem] text-muted">Illustrative photograph</figcaption>
-    </figure>
+      <SupportLink support={area.cta.support} className="link-cta mt-9 text-ink">
+        {area.cta.label}
+        <ArrowIcon />
+      </SupportLink>
+    </>
   );
 }

@@ -1,82 +1,117 @@
-import Image from "next/image";
+import HeroVideo, { VIDEO_CONTROL_ID } from "./HeroVideo";
 import { ArrowIcon } from "./Icons";
-import { photos } from "@/content/photos";
+import { focusAreas } from "@/content/focus";
+import { heroVideo } from "@/content/video";
+import { site } from "@/content/site";
+import videoPoster from "@/assets/video-poster.jpg";
+
+/** Delay helper for the staggered entrance (CSS animations, see globals.css). */
+const d = (ms: number) => ({ animationDelay: `${ms}ms` });
 
 export default function Hero() {
   return (
-    <section id="top" aria-labelledby="hero-heading" className="pt-18 lg:pt-20">
-      <div className="wrap pb-10 pt-12 sm:pt-16 lg:pb-12 lg:pt-20">
-        <h1
-          id="hero-heading"
-          className="intro font-serif text-[clamp(3.1rem,8.4vw,8.25rem)] font-light leading-[0.94] tracking-[-0.03em] text-ink"
-        >
-          A chance to learn.
-          <br />
-          <em className="font-light">A life with dignity.</em>
-        </h1>
+    <section
+      id="top"
+      aria-labelledby="hero-heading"
+      className="relative isolate flex min-h-[100svh] flex-col overflow-hidden bg-brand-deep text-paper"
+    >
+      {/* Film + poster */}
+      <HeroVideo poster={videoPoster} posterAlt={heroVideo.description} />
 
-        <div className="intro mt-10 grid gap-8 border-t border-rule pt-8 [animation-delay:200ms] lg:mt-14 lg:grid-cols-12 lg:items-end lg:gap-x-8">
-          <p className="max-w-xl text-lg leading-relaxed text-ink-soft sm:text-xl lg:col-span-6">
-            Supporting students from families facing financial hardship and senior citizens who need
-            care and assistance in India.
+      {/* Evergreen veil: strongest behind the text, clearer where the film breathes */}
+      <div aria-hidden="true" className="pointer-events-none absolute inset-0 bg-brand-deep/30" />
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-0 bg-[linear-gradient(100deg,rgba(21,47,39,0.94)_0%,rgba(21,47,39,0.78)_36%,rgba(21,47,39,0.22)_72%,rgba(21,47,39,0.08)_100%)]"
+      />
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-x-0 bottom-0 h-2/3 bg-[linear-gradient(0deg,rgba(21,47,39,0.96)_0%,rgba(21,47,39,0)_100%)]"
+      />
+
+      {/* Message */}
+      <div className="wrap relative z-10 flex flex-1 flex-col justify-center pb-16 pt-32 sm:pt-36 lg:pb-24">
+        <div className="max-w-3xl">
+          <p className="hero-fade type-eyebrow flex items-center gap-4 text-gold-light" style={d(150)}>
+            <span aria-hidden="true" className="hero-draw h-px w-12 bg-gold-light" style={d(150)} />
+            <span>
+              <span className="hidden sm:inline">{site.name} · </span>
+              {site.established}
+            </span>
           </p>
-          <div className="flex flex-wrap items-center gap-x-8 gap-y-4 lg:col-span-6 lg:justify-end">
-            <a
-              href="#contact"
-              className="group inline-flex items-center gap-3 bg-ink px-6 py-4 text-[0.9375rem] font-medium text-paper transition-colors hover:bg-gold-dark"
-            >
+
+          <h1 id="hero-heading" className="mt-8 font-serif text-[clamp(2.6rem,7vw,6.5rem)] leading-[1.02] tracking-[-0.02em]">
+            <span className="block overflow-hidden pb-[0.08em]">
+              <span className="hero-rise block" style={d(250)}>
+                A chance to learn.
+              </span>
+            </span>
+            <span className="-mt-[0.08em] block overflow-hidden pb-[0.16em]">
+              <em className="hero-rise block text-gold-light" style={d(420)}>
+                A life with dignity.
+              </em>
+            </span>
+          </h1>
+
+          <p className="hero-fade type-lead mt-6 max-w-xl text-paper/85" style={d(700)}>
+            We support students from families facing financial hardship, and senior citizens who need care and
+            assistance, so that every child can succeed and every senior can live with dignity.
+          </p>
+
+          <div className="hero-fade mt-10 flex flex-wrap items-center gap-4" style={d(850)}>
+            <a href={site.requestSupportHref} className="btn btn-light">
               Request Support
-              <ArrowIcon className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
+              <ArrowIcon />
             </a>
-            <a href="#about" className="text-link text-[0.9375rem] font-medium text-ink">
-              About the Foundation
+            <a href="#mission" className="btn btn-ghost-light">
+              Explore Our Mission
             </a>
           </div>
         </div>
       </div>
 
-      {/* Two pillars, set as a single photographic plate */}
-      <div className="wrap intro [animation-delay:350ms]">
-        <div className="grid grid-cols-[3fr_2fr] gap-1.5 sm:gap-2 lg:grid-cols-12">
-          <figure className="lg:col-span-8">
-            <div className="relative h-[15rem] overflow-hidden bg-stone sm:h-[26rem] lg:h-[min(40rem,62vh)]">
-              <Image
-                src={photos.children.image}
-                alt={photos.children.alt}
-                fill
-                preload
-                placeholder="blur"
-                sizes="(min-width: 1024px) 66vw, 60vw"
-                className="object-cover object-[50%_45%]"
-              />
-            </div>
-            <figcaption className="mt-3 text-[0.8125rem] leading-snug text-muted">
-              Every child deserves a chance to succeed.
-            </figcaption>
-          </figure>
-          <figure className="lg:col-span-4">
-            <div className="relative h-[15rem] overflow-hidden bg-stone sm:h-[26rem] lg:h-[min(40rem,62vh)]">
-              <Image
-                src={photos.elder.image}
-                alt={photos.elder.alt}
-                fill
-                preload
-                placeholder="blur"
-                sizes="(min-width: 1024px) 33vw, 40vw"
-                className="object-cover object-[64%_35%]"
-              />
-            </div>
-            <figcaption className="mt-3 text-[0.8125rem] leading-snug text-muted">
-              Every senior deserves to live with dignity.
-            </figcaption>
-          </figure>
+      {/* Scroll cue */}
+      <a
+        href="#about"
+        aria-label="Scroll to About Us"
+        className="hero-fade absolute bottom-40 right-12 z-10 hidden flex-col items-center gap-3 text-paper/70 transition-colors hover:text-paper xl:flex"
+        style={d(1300)}
+      >
+        <span className="type-eyebrow [writing-mode:vertical-rl] !tracking-[0.3em]">Scroll</span>
+        <span aria-hidden="true" className="relative h-14 w-px overflow-hidden bg-paper/25">
+          <span className="scroll-cue absolute inset-0 bg-gold-light" />
+        </span>
+      </a>
+
+      {/* Focus areas + film controls */}
+      <div className="hero-fade relative z-10 border-t border-paper/15 bg-brand-deep/55" style={d(1000)}>
+        <div className="wrap grid lg:grid-cols-[repeat(3,minmax(0,1fr))_auto]">
+          {focusAreas.map((area, i) => (
+            <a
+              key={area.id}
+              href={`#${area.id}`}
+              className={`group flex items-center justify-between gap-4 py-5 transition-colors hover:text-gold-light lg:py-7 lg:pr-7 ${
+                i > 0 ? "border-t border-paper/15 lg:border-l lg:border-t-0 lg:pl-7" : ""
+              }`}
+            >
+              <span>
+                <span className="type-eyebrow block tabular-nums text-gold-light">{area.index}</span>
+                <span className="mt-1.5 block font-serif text-[1.25rem] leading-tight lg:text-[1.375rem]">{area.title}</span>
+              </span>
+              <ArrowIcon className="h-5 w-5 shrink-0 text-gold-light transition-transform group-hover:translate-x-1" />
+            </a>
+          ))}
+          <div className="flex items-center gap-4 border-t border-paper/15 py-5 lg:border-l lg:border-t-0 lg:pl-7">
+            <span id={VIDEO_CONTROL_ID} className="contents" />
+            <p className="whitespace-nowrap text-[0.8125rem] leading-snug text-paper/65">
+              Illustrative footage
+              <br />
+              <a href="#photo-credits" className="underline underline-offset-2 hover:text-paper">
+                Credits
+              </a>
+            </p>
+          </div>
         </div>
-        <p className="mt-2 text-right text-xs text-muted">
-          Illustrative photographs.{" "}
-          <a href="#photo-credits" className="text-link">
-            Credits
-          </a>
-        </p>
       </div>
     </section>
   );

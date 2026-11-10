@@ -2,17 +2,28 @@ import type { StaticImageData } from "next/image";
 import educationClassroom from "@/assets/photos/education-classroom.jpg";
 import educationReading from "@/assets/photos/education-reading.jpg";
 import seniorPortrait from "@/assets/photos/senior-portrait.jpg";
-import seniorCommunity from "@/assets/photos/senior-community.jpg";
-import communityWomen from "@/assets/photos/community-women.jpg";
+import heroClassroomSmiles from "@/assets/photos/hero-classroom-smiles.jpg";
+import aboutOutdoorClass from "@/assets/photos/about-outdoor-class.jpg";
+import focusEducationBoy from "@/assets/photos/focus-education-boy.jpg";
+import focusSeniorHealth from "@/assets/photos/focus-senior-health.jpg";
+import focusCommunityShg from "@/assets/photos/focus-community-shg.jpg";
+import commitmentGrandparents from "@/assets/photos/commitment-grandparents.jpg";
+import impactStudyGroup from "@/assets/photos/impact-study-group.jpg";
+import impactElderPortrait from "@/assets/photos/impact-elder-portrait.jpg";
+import impactRuralWomen from "@/assets/photos/impact-rural-women.jpg";
+import storyKulluStudy from "@/assets/photos/story-kullu-study.jpg";
+import storyElderHome from "@/assets/photos/story-elder-home.jpg";
+import storyShgMother from "@/assets/photos/story-shg-mother.jpg";
 
 /**
  * Photographs used on the site.
  *
- * These are ILLUSTRATIVE images licensed under Creative Commons from
- * Wikimedia Commons. They do not show Polishetty Foundation beneficiaries,
+ * These are ILLUSTRATIVE images from Wikimedia Commons, all taken in India and
+ * licensed under Creative Commons licences that allow resizing and cropping
+ * (CC BY / CC BY-SA). They do not show Polishetty Foundation beneficiaries,
  * programmes or events. The footer carries a disclosure and the required
- * attribution for each one (author, licence, source, and that the images
- * were resized and cropped).
+ * attribution for each one (title, author, licence, source, and that the
+ * images were resized and cropped).
  *
  * When the foundation has its own photographs (with consent from the people
  * shown), replace the files in src/assets/photos and update the entries here.
@@ -29,28 +40,41 @@ export type Photo = {
   };
 };
 
+const commons = (file: string) => `https://commons.wikimedia.org/wiki/File:${file}`;
+const BY2 = { license: "CC BY 2.0", licenseUrl: "https://creativecommons.org/licenses/by/2.0/" };
+const BY3 = { license: "CC BY 3.0", licenseUrl: "https://creativecommons.org/licenses/by/3.0/" };
+const BYSA2 = { license: "CC BY-SA 2.0", licenseUrl: "https://creativecommons.org/licenses/by-sa/2.0/" };
+const BYSA4 = { license: "CC BY-SA 4.0", licenseUrl: "https://creativecommons.org/licenses/by-sa/4.0/" };
+
 export const photos = {
+  hero: {
+    image: heroClassroomSmiles,
+    alt: "Three schoolboys in Chennai leaning into the frame, smiling broadly",
+    credit: {
+      title: "Connecting classrooms around the world",
+      author: "DFID – UK Department for International Development",
+      ...BYSA2,
+      sourceUrl: commons("Connecting_classrooms_around_the_world_(3677773417).jpg"),
+    },
+  },
+  outdoorClass: {
+    image: aboutOutdoorClass,
+    alt: "Children sitting cross-legged on mats for an outdoor class under the trees",
+    credit: {
+      title: "Adivasi Children at Tribal Academy, Tejgadh",
+      author: "Gazal world",
+      ...BYSA4,
+      sourceUrl: commons("Adivasi_Children_at_Tribal_Academy_Tejgadh.jpg"),
+    },
+  },
   children: {
     image: educationClassroom,
     alt: "Schoolchildren in uniform standing together in a rural classroom in Tamil Nadu",
     credit: {
       title: "Tamil Nadu school kids",
       author: "McKay Savage",
-      license: "CC BY 2.0",
-      licenseUrl: "https://creativecommons.org/licenses/by/2.0/",
-      sourceUrl: "https://commons.wikimedia.org/wiki/File:Tamil_Nadu_school_kids.jpg",
-    },
-  },
-  reading: {
-    image: educationReading,
-    alt: "A schoolgirl sitting at a table, absorbed in reading a picture book",
-    credit: {
-      title: "A girl reading a book",
-      author: "Pratham Books",
-      license: "CC BY 2.0",
-      licenseUrl: "https://creativecommons.org/licenses/by/2.0/",
-      sourceUrl:
-        "https://commons.wikimedia.org/wiki/File:A_girl_reading_a_book_-_Flickr_-_Pratham_Books_(1).jpg",
+      ...BY2,
+      sourceUrl: commons("Tamil_Nadu_school_kids.jpg"),
     },
   },
   elder: {
@@ -59,32 +83,120 @@ export const photos = {
     credit: {
       title: "Aged Male Resident, Social Care Home, Baganda, Hooghly",
       author: "Biswarup Ganguly",
-      license: "CC BY 3.0",
-      licenseUrl: "https://creativecommons.org/licenses/by/3.0/",
-      sourceUrl:
-        "https://commons.wikimedia.org/wiki/File:Aged_Male_Resident_-_Social_Care_Home_-_Janasiksha_Prochar_Kendra_-_Baganda_-_Hooghly_2014-09-28_8559.JPG",
+      ...BY3,
+      sourceUrl: commons(
+        "Aged_Male_Resident_-_Social_Care_Home_-_Janasiksha_Prochar_Kendra_-_Baganda_-_Hooghly_2014-09-28_8559.JPG",
+      ),
     },
   },
-  elders: {
-    image: seniorCommunity,
-    alt: "A group of elderly women and men seated together under a shaded shelter",
+  studyingBoy: {
+    image: focusEducationBoy,
+    alt: "A smiling boy in a blue school shirt at his desk, pen in hand",
     credit: {
-      title: "Light old age home 4",
+      title: "A young boy studying in school",
+      author: "ILO Asia-Pacific",
+      ...BYSA2,
+      sourceUrl: commons("A_young_boy_studying_in_school_(24740479123).jpg"),
+    },
+  },
+  seniorHealth: {
+    image: focusSeniorHealth,
+    alt: "A doctor checking an elderly man's blood pressure while a woman looks on",
+    credit: {
+      title: "Light old age home",
       author: "Jones Daniel T",
-      license: "CC BY-SA 4.0",
-      licenseUrl: "https://creativecommons.org/licenses/by-sa/4.0/",
-      sourceUrl: "https://commons.wikimedia.org/wiki/File:Light_old_age_home_4.jpg",
+      ...BYSA4,
+      sourceUrl: commons("Light_old_age_home.jpg"),
     },
   },
-  community: {
-    image: communityWomen,
-    alt: "Women from a village community sitting together at a shared workspace",
+  selfHelpGroup: {
+    image: focusCommunityShg,
+    alt: "Women seated in a circle at a community self-help group meeting",
     credit: {
-      title: "Artists at work 01",
-      author: "Arina Bardhan",
-      license: "CC BY-SA 4.0",
-      licenseUrl: "https://creativecommons.org/licenses/by-sa/4.0/",
-      sourceUrl: "https://commons.wikimedia.org/wiki/File:Artists_at_work_01.jpg",
+      title: "Women self help group foundation",
+      author: "Pondicherry17",
+      ...BYSA4,
+      sourceUrl: commons("Women_self_help_group_foundation.jpg"),
+    },
+  },
+  grandparents: {
+    image: commitmentGrandparents,
+    alt: "A grandfather playfully making his granddaughter smile as her grandmother holds her",
+    credit: {
+      title: "Grandparents – The cradle of love",
+      author: "PR Kavitha",
+      ...BYSA4,
+      sourceUrl: commons("Grandparents_-_The_cradle_of_love!!.jpg"),
+    },
+  },
+  studyGroup: {
+    image: impactStudyGroup,
+    alt: "Schoolgirls bent over their notebooks during a group study session",
+    credit: {
+      title: "Biology study group",
+      author: "Barry Pousman",
+      ...BY2,
+      sourceUrl: commons("Biology_study_group_(6146861188).jpg"),
+    },
+  },
+  elderPortrait: {
+    image: impactElderPortrait,
+    alt: "Portrait of an elderly man wearing a saffron turban and shawl",
+    credit: {
+      title: "Elderly man in traditional turban and shawl in rural India",
+      author: "The open draft",
+      ...BYSA4,
+      sourceUrl: commons("Elderly_man_in_traditional_turban_and_shawl_in_rural_India.jpg"),
+    },
+  },
+  ruralWomen: {
+    image: impactRuralWomen,
+    alt: "A group of women in bright saris sitting together and smiling",
+    credit: {
+      title: "India – Faces – Rural women driving their own change",
+      author: "McKay Savage",
+      ...BY2,
+      sourceUrl: commons("India_-_Faces_-_Rural_women_driving_their_own_change_1_(2229752965).jpg"),
+    },
+  },
+  kulluStudy: {
+    image: storyKulluStudy,
+    alt: "Schoolchildren studying on a mat in a courtyard, their bags and books around them",
+    credit: {
+      title: "Bekhli School Children Study, Kullu, Himachal",
+      author: "Timothy A. Gonsalves",
+      ...BYSA4,
+      sourceUrl: commons("Bekhli_School_Children_Study_Kullu_Himachal_Dec17_D72_4560.jpg"),
+    },
+  },
+  elderAtHome: {
+    image: storyElderHome,
+    alt: "An elderly woman sitting alone on the veranda of her home",
+    credit: {
+      title: "An old woman from the Jenu Kuruba community",
+      author: "MaximusPrasad",
+      ...BYSA4,
+      sourceUrl: commons("8.An_old_Woman_from_Jenu_Kuruba_Community.jpg"),
+    },
+  },
+  motherAndChild: {
+    image: storyShgMother,
+    alt: "A young mother holding her small daughter on her hip",
+    credit: {
+      title: "Rural women from a SHG",
+      author: "McKay Savage",
+      ...BY2,
+      sourceUrl: commons("Rural_women_from_a_SHG.jpg"),
+    },
+  },
+  reading: {
+    image: educationReading,
+    alt: "A schoolgirl sitting at a table, absorbed in reading a picture book",
+    credit: {
+      title: "A girl reading a book",
+      author: "Pratham Books",
+      ...BY2,
+      sourceUrl: commons("A_girl_reading_a_book_-_Flickr_-_Pratham_Books_(1).jpg"),
     },
   },
 } satisfies Record<string, Photo>;
