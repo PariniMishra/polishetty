@@ -70,7 +70,7 @@ const sections: { heading: string; body: React.ReactNode }[] = [
       <p>
         You can ask us to see, correct or delete the information you have shared with us, or ask us to stop
         contacting you, at any time. To do so, send us a message through the{" "}
-        <a href="/#contact" className="text-link text-brand">
+        <a href="/#contact" className="text-link text-gold-dark">
           enquiry form
         </a>{" "}
         and choose &ldquo;General Enquiry&rdquo;.

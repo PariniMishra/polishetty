@@ -82,8 +82,8 @@ export async function sendEnquiry(_prev: EnquiryState, formData: FormData): Prom
   }
 
   const html = `
-    <div style="font-family:Arial,sans-serif;color:#1c1d18;max-width:600px">
-      <h2 style="margin:0 0 16px;border-left:4px solid #ab8018;padding-left:12px">New enquiry: ${escapeHtml(data.support)}</h2>
+    <div style="font-family:Arial,sans-serif;color:#0e1311;max-width:600px">
+      <h2 style="margin:0 0 16px;border-left:4px solid #ff6b1a;padding-left:12px">New enquiry: ${escapeHtml(data.support)}</h2>
       <table cellpadding="8" style="border-collapse:collapse;width:100%">
         ${rows
           .map(

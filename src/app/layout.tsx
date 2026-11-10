@@ -1,21 +1,21 @@
 import type { Metadata, Viewport } from "next";
-import { DM_Serif_Display, Source_Sans_3 } from "next/font/google";
+import { Inter, Inter_Tight } from "next/font/google";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { site } from "@/content/site";
 import "./globals.css";
 
-const serif = DM_Serif_Display({
+/* Inter Tight (headings): tight, confident, institutional.
+   Inter (text and interface): neutral and highly legible. */
+const serif = Inter_Tight({
   subsets: ["latin"],
-  weight: "400",
-  style: ["normal", "italic"],
-  variable: "--font-dm-serif",
+  variable: "--font-inter-tight",
   display: "swap",
 });
 
-const sans = Source_Sans_3({
+const sans = Inter({
   subsets: ["latin"],
-  variable: "--font-source-sans",
+  variable: "--font-inter",
   display: "swap",
 });
 
@@ -43,7 +43,7 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#fbf9f4",
+  themeColor: "#f7f7f4",
 };
 
 const organizationJsonLd = {

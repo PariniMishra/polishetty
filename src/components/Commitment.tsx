@@ -28,14 +28,14 @@ export default function Commitment() {
           <div className="lg:col-span-7">
             <div className="reveal">
               <SectionLabel light>Our Commitment</SectionLabel>
-              <h2 id="commitment-heading" className="mt-8 font-serif text-[clamp(2rem,3.4vw,3.15rem)] leading-[1.12] tracking-[-0.01em]">
+              <h2 id="commitment-heading" className="mt-8 font-serif text-[clamp(2rem,3.4vw,3.1rem)] leading-[1.04] tracking-[-0.038em]">
                 <em className="text-gold-light">Our purpose is simple:</em> empower the young, care for the
                 elderly, and inspire a culture of giving.
               </h2>
             </div>
 
-            <blockquote className="reveal mt-14 border-l-2 border-gold-light pl-6 sm:pl-8">
-              <p className="font-serif text-[clamp(1.3rem,1.9vw,1.7rem)] italic leading-[1.4] text-paper/90">
+            <blockquote className="reveal mt-14 border-l-2 border-gold pl-6 sm:pl-8">
+              <p className="font-serif text-[clamp(1.3rem,1.9vw,1.65rem)] font-medium leading-[1.45] tracking-[-0.012em] text-paper/90">
                 &ldquo;Inspired by the compassion, values, and lifelong vision of our parents, the Foundation
                 reflects their belief that everyone deserves an opportunity to learn, grow, and live with
                 dignity, regardless of their financial or social circumstances.&rdquo;
@@ -53,7 +53,7 @@ export default function Commitment() {
                 {values.map((v, i) => (
                   <li key={v}>
                     <span className="type-eyebrow block tabular-nums text-paper/50">0{i + 1}</span>
-                    <span className="mt-2 block font-serif text-[clamp(1.4rem,2.4vw,2.25rem)] leading-none">
+                    <span className="mt-2 block font-serif text-[clamp(1.4rem,2.4vw,2.2rem)] leading-none tracking-[-0.045em]">
                       {v}
                     </span>
                   </li>

@@ -31,7 +31,7 @@ export default function Contact() {
               <ol className="mt-6 space-y-6">
                 {steps.map((step, i) => (
                   <li key={step.title} className="grid grid-cols-[2.5rem_1fr]">
-                    <span className="font-serif text-2xl leading-none text-gold-light">{i + 1}</span>
+                    <span className="font-serif text-[1.5rem] leading-none text-gold-light">{i + 1}</span>
                     <div>
                       <p className="text-lg font-semibold">{step.title}</p>
                       <p className="mt-1 leading-relaxed text-paper/75">{step.body}</p>

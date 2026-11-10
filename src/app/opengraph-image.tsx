@@ -9,16 +9,15 @@ export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
 const root = process.cwd();
-const [serif, serifItalic, logo] = await Promise.all([
-  readFile(join(root, "src/assets/fonts/DMSerifDisplay-Regular.ttf")),
-  readFile(join(root, "src/assets/fonts/DMSerifDisplay-Italic.ttf")),
+const [display, logo] = await Promise.all([
+  readFile(join(root, "src/assets/fonts/InterTight-SemiBold.ttf")),
   readFile(join(root, "public/logo-light.png")),
 ]);
 const logoSrc = `data:image/png;base64,${logo.toString("base64")}`;
 
-const ink = "#152f27"; // brand-deep
-const paper = "#fbf9f4";
-const goldLight = "#dbb85e";
+const ink = "#0e1311";
+const paper = "#f7f7f4";
+const saffron = "#ff6b1a";
 
 export default async function Image() {
   return new ImageResponse(
@@ -33,24 +32,25 @@ export default async function Image() {
           background: ink,
           color: paper,
           padding: "72px 80px",
-          fontFamily: "DM Serif Display",
+          fontFamily: "Inter Tight",
         }}
       >
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img src={logoSrc} width={256} height={72} alt="" />
 
-        <div style={{ display: "flex", flexDirection: "column", fontSize: 92, lineHeight: 1, letterSpacing: "-0.03em" }}>
+        <div style={{ display: "flex", flexDirection: "column", fontSize: 100, lineHeight: 0.98, letterSpacing: "-0.05em" }}>
           <span>A chance to learn.</span>
-          <span style={{ fontStyle: "italic", color: goldLight, marginTop: 8 }}>A life with dignity.</span>
+          <span style={{ color: saffron }}>A life with dignity.</span>
         </div>
 
         <div
           style={{
             display: "flex",
-            borderTop: `1px solid rgba(251,250,247,0.2)`,
+            borderTop: `3px solid ${saffron}`,
             paddingTop: 28,
             fontSize: 30,
-            lineHeight: 1.35,
+            lineHeight: 1.4,
+            letterSpacing: "-0.01em",
             color: "rgba(251,250,247,0.75)",
             maxWidth: 940,
           }}
@@ -62,8 +62,7 @@ export default async function Image() {
     {
       ...size,
       fonts: [
-        { name: "DM Serif Display", data: serif, style: "normal", weight: 400 },
-        { name: "DM Serif Display", data: serifItalic, style: "italic", weight: 400 },
+        { name: "Inter Tight", data: display, style: "normal", weight: 600 },
       ],
     },
   );

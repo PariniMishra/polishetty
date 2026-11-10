@@ -14,7 +14,7 @@ export default function Stories() {
           <div className="lg:col-span-7">
             <SectionLabel index="04">Stories &amp; Updates</SectionLabel>
             <h2 id="stories-heading" className="type-headline mt-8 text-ink">
-              Stories of learning, <em className="text-brand">care and community</em>
+              Stories of learning, <em className="text-muted">care and community</em>
             </h2>
           </div>
           <div className="lg:col-span-5 lg:self-end">
@@ -67,7 +67,7 @@ export default function Stories() {
                 </div>
                 <div className="mt-6">
                   <StoryMeta story={story} />
-                  <h3 className="mt-4 font-serif text-[1.5rem] leading-[1.18] text-ink">
+                  <h3 className="mt-4 font-serif text-[1.4rem] leading-[1.15] text-ink">
                     <StoryTitle story={story} />
                   </h3>
                   <p className="mt-3 text-base leading-[1.7] text-ink-soft">{story.excerpt}</p>
@@ -78,8 +78,8 @@ export default function Stories() {
         </ul>
 
         <div className="reveal mt-16 flex flex-col items-start justify-between gap-6 border-t border-rule pt-10 sm:flex-row sm:items-center">
-          <p className="font-serif text-2xl text-ink">Know a student or senior who needs support?</p>
-          <a href={site.requestSupportHref} className="btn btn-outline text-brand">
+          <p className="font-serif text-[1.5rem] text-ink">Know a student or senior who needs support?</p>
+          <a href={site.requestSupportHref} className="btn btn-outline text-ink">
             Refer someone to us
             <ArrowIcon />
           </a>
@@ -113,7 +113,7 @@ function StoryMeta({ story }: { story: Story }) {
 function StoryTitle({ story }: { story: Story }) {
   if (!story.href) return <>{story.title}</>;
   return (
-    <a href={story.href} className="transition-colors hover:text-brand">
+    <a href={story.href} className="transition-colors hover:text-gold-dark">
       {story.title}
     </a>
   );

@@ -15,7 +15,7 @@ export default function Focus() {
           <div className="lg:col-span-7">
             <SectionLabel index="02">Our Focus</SectionLabel>
             <h2 id="focus-heading" className="type-headline mt-8 text-ink">
-              Creating Opportunities. Enriching Lives. <em className="text-brand">Building a Better Tomorrow.</em>
+              Creating Opportunities. Enriching Lives. <em className="text-muted">Building a Better Tomorrow.</em>
             </h2>
           </div>
           <div className="space-y-5 text-lg leading-[1.7] text-ink-soft lg:col-span-5 lg:self-end">
@@ -101,7 +101,7 @@ function AreaText({ area, large }: { area: FocusArea; large?: boolean }) {
       <h3 className={`mt-5 text-ink ${large ? "type-headline !text-[clamp(2.2rem,3.6vw,3.4rem)]" : "type-title"}`}>
         {area.title}
       </h3>
-      <p className={`mt-6 font-serif italic text-brand ${large ? "text-[1.5rem] leading-snug" : "text-xl leading-snug"}`}>
+      <p className={`mt-6 font-serif font-medium text-ink ${large ? "text-[1.5rem] leading-snug" : "text-[1.25rem] leading-snug"}`}>
         {area.lead}
       </p>
       <p className="mt-5 text-lg leading-[1.7] text-ink-soft">{area.body}</p>

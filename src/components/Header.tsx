@@ -61,7 +61,7 @@ export default function Header() {
       className={`fixed inset-x-0 top-0 z-50 border-b transition-[background-color,border-color,box-shadow] duration-500 ${
         overHero
           ? "border-paper/15 bg-transparent"
-          : `bg-paper ${scrolled || open ? "border-rule shadow-[0_1px_12px_rgba(24,32,28,0.05)]" : "border-transparent"}`
+          : `bg-paper ${scrolled || open ? "border-rule shadow-[0_1px_12px_rgba(14,19,17,0.06)]" : "border-transparent"}`
       }`}
     >
       <div className="wrap flex h-18 items-center justify-between gap-6 lg:h-20">
@@ -72,6 +72,7 @@ export default function Header() {
             width={1050}
             height={295}
             preload
+            loading="eager"
             className="h-9 w-auto lg:h-10"
           />
         </a>
@@ -85,7 +86,7 @@ export default function Header() {
                   aria-current={isCurrent(item.href) ? "location" : undefined}
                   className={`relative py-2 text-[0.96875rem] font-semibold transition-colors after:absolute after:inset-x-0 after:-bottom-0.5 after:h-0.5 after:origin-left after:scale-x-0 after:transition-transform after:duration-300 hover:after:scale-x-100 aria-[current]:after:scale-x-100 ${
                     overHero
-                      ? "text-paper/80 after:bg-gold-light hover:text-paper aria-[current]:text-paper"
+                      ? "text-paper/80 after:bg-gold hover:text-paper aria-[current]:text-paper"
                       : "text-ink-soft after:bg-gold hover:text-ink aria-[current]:text-ink"
                   }`}
                 >
@@ -96,7 +97,7 @@ export default function Header() {
           </ul>
           <a
             href={site.requestSupportHref}
-            className={`btn !px-5 !py-3 text-[0.96875rem] ${overHero ? "btn-light" : "btn-primary"}`}
+            className="btn btn-primary !px-5 !py-3 text-[0.9375rem]"
           >
             Request Support
             <ArrowIcon />
@@ -132,7 +133,7 @@ export default function Header() {
                   href={item.href}
                   onClick={() => setOpen(false)}
                   aria-current={isCurrent(item.href) ? "location" : undefined}
-                  className="flex items-baseline gap-5 py-4.5 font-serif text-[1.875rem] text-ink aria-[current]:text-brand"
+                  className="flex items-baseline gap-5 py-4.5 font-serif text-[1.8rem] text-ink aria-[current]:text-gold-dark"
                 >
                   <span className="type-eyebrow tabular-nums text-gold-dark">0{i + 1}</span>
                   {item.label}
@@ -149,7 +150,7 @@ export default function Header() {
               Request Support
               <ArrowIcon />
             </a>
-            <p className="mt-6 font-serif text-xl text-ink-soft">
+            <p className="mt-6 font-serif text-[1.15rem] text-ink-soft">
               {site.tagline}
             </p>
           </div>

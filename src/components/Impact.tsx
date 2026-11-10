@@ -43,7 +43,7 @@ export default function Impact() {
           <div className="lg:col-span-7">
             <SectionLabel index="03">Our Impact</SectionLabel>
             <h2 id="impact-heading" className="type-headline mt-8 text-ink">
-              The difference <em className="text-brand">we work towards</em>
+              The difference <em className="text-muted">we work towards</em>
             </h2>
           </div>
           <p className="type-lead text-ink-soft lg:col-span-5 lg:self-end">
@@ -86,7 +86,7 @@ export default function Impact() {
           <ul className="mt-10 grid gap-y-10 border-t border-rule pt-10 sm:grid-cols-3 sm:gap-x-10">
             {facts.map((f) => (
               <li key={f.label}>
-                <span className="block font-serif text-[clamp(3.5rem,6vw,5rem)] leading-none text-brand">
+                <span className="block font-serif text-[clamp(3.5rem,6vw,5.25rem)] leading-none tracking-[-0.06em] text-gold-dark">
                   {f.figure}
                 </span>
                 <span className="mt-3 block text-lg font-semibold text-ink">{f.label}</span>

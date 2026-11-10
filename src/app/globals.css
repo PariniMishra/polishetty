@@ -9,28 +9,28 @@
      Contrast: paper on brand ≈ 10:1, gold-light on brand ≈ 5.5:1,
      gold-dark on paper ≈ 5:1, muted on paper ≈ 4.8:1.
      --------------------------------------------------------------- */
-  --color-brand: #1f4337;
-  --color-brand-deep: #152f27;
-  --color-brand-tint: #e9efe9; /* quiet green wash for panels */
+  --color-brand: #141a17; /* graphite: dark bands, panels */
+  --color-brand-deep: #0e1311; /* footer, deepest surface */
+  --color-brand-tint: #efeee8; /* quiet neutral wash for panels */
 
-  /* Brand gold sampled from the logo */
-  --color-gold: #ab8018;
-  --color-gold-dark: #8a6612; /* AA on light backgrounds */
-  --color-gold-light: #dbb85e; /* AA on brand / brand-deep */
+  /* Saffron, the single accent. Text uses the shade that passes AA */
+  --color-gold: #ff6b1a; /* fills, lines, dots; buttons use ink text (6.6:1) */
+  --color-gold-dark: #c2410c; /* saffron text on light (4.8:1) */
+  --color-gold-light: #ff7a2e; /* saffron text on dark (6.8:1) */
 
-  /* Warm neutrals, text tinted to sit with the evergreen */
-  --color-ink: #18201c;
-  --color-ink-soft: #46514b;
-  --color-muted: #66706a;
-  --color-paper: #fbf9f4;
-  --color-stone: #f2ede2; /* sand */
-  --color-rule: #dbd5c7;
+  /* Neutral, faintly green-grey monochrome */
+  --color-ink: #0e1311;
+  --color-ink-soft: #3f4643;
+  --color-muted: #5b625e; /* slate, 5.8:1 on paper */
+  --color-paper: #f7f7f4;
+  --color-stone: #e9e8e2;
+  --color-rule: #d8d7d0;
   --color-danger: #a12a1f;
   --color-danger-tint: #fbefec;
 
-  /* DM Serif Display for headings, Source Sans 3 for reading text */
-  --font-serif: var(--font-dm-serif), Georgia, "Times New Roman", serif;
-  --font-sans: var(--font-source-sans), system-ui, -apple-system, "Segoe UI", sans-serif;
+  /* Inter Tight for headings (via the existing font-serif hook), Inter for text */
+  --font-serif: var(--font-inter-tight), var(--font-inter), system-ui, sans-serif;
+  --font-sans: var(--font-inter), system-ui, -apple-system, "Segoe UI", sans-serif;
 }
 
 @layer components {
@@ -78,43 +78,66 @@
      --------------------------------------------------------------- */
   .type-display {
     font-family: var(--font-serif);
-    font-weight: 400;
-    font-size: clamp(2.75rem, 5.2vw, 4.75rem);
-    line-height: 1.02;
-    letter-spacing: -0.018em;
+    font-weight: 600;
+    font-size: clamp(2.9rem, 6vw, 5.75rem);
+    line-height: 0.94;
+    letter-spacing: -0.042em;
   }
   .type-headline {
     font-family: var(--font-serif);
-    font-weight: 400;
-    font-size: clamp(2.35rem, 4.6vw, 4.25rem);
-    line-height: 1.04;
-    letter-spacing: -0.014em;
+    font-weight: 600;
+    font-size: clamp(2.4rem, 4.8vw, 4.4rem);
+    line-height: 1;
+    letter-spacing: -0.038em;
   }
   .type-statement {
     font-family: var(--font-serif);
-    font-weight: 400;
-    font-size: clamp(1.5rem, 2.5vw, 2.3rem);
-    line-height: 1.26;
-    letter-spacing: -0.004em;
+    font-weight: 500;
+    font-size: clamp(1.55rem, 2.5vw, 2.3rem);
+    line-height: 1.25;
+    letter-spacing: -0.02em;
   }
   .type-title {
     font-family: var(--font-serif);
-    font-weight: 400;
-    font-size: clamp(1.55rem, 2.3vw, 2.15rem);
-    line-height: 1.12;
-    letter-spacing: -0.005em;
+    font-weight: 600;
+    font-size: clamp(1.5rem, 2.1vw, 2rem);
+    line-height: 1.1;
+    letter-spacing: -0.028em;
   }
   .type-lead {
-    font-size: clamp(1.125rem, 1.45vw, 1.3125rem);
-    line-height: 1.6;
+    font-size: clamp(1.0625rem, 1.35vw, 1.25rem);
+    line-height: 1.65;
   }
   .type-eyebrow {
     font-family: var(--font-sans);
-    font-size: 0.75rem;
-    font-weight: 700;
+    font-size: 0.6875rem;
+    font-weight: 600;
     line-height: 1.4;
-    letter-spacing: 0.16em;
+    letter-spacing: 0.18em;
     text-transform: uppercase;
+  }
+
+  /* Any serif text not using a type-* class is set semibold, so Cormorant
+     never renders thin and spindly at small sizes */
+  .font-serif {
+    font-weight: 600;
+    letter-spacing: -0.025em;
+  }
+  /* Accent phrases inside headings change colour, never slant */
+  h1 em,
+  h2 em,
+  h3 em,
+  .font-serif em {
+    font-style: normal;
+  }
+  /* Lining figures: Cormorant's default old-style numerals look uneven in
+     step numbers and statistics */
+  .font-serif,
+  .type-display,
+  .type-headline,
+  .type-statement,
+  .type-title {
+    font-variant-numeric: lining-nums;
   }
 
   /* Buttons: square-cornered, confident, with a sliding arrow */
@@ -124,8 +147,9 @@
     justify-content: center;
     gap: 0.75rem;
     padding: 0.95rem 1.6rem;
-    font-size: 1rem;
+    font-size: 0.9375rem;
     font-weight: 600;
+    letter-spacing: -0.005em;
     line-height: 1.2;
     transition:
       background-color 0.25s ease,
@@ -141,33 +165,32 @@
     transform: translateX(3px);
   }
   .btn-primary {
-    background: var(--color-brand);
-    color: var(--color-paper);
+    background: var(--color-gold);
+    color: var(--color-ink);
   }
   .btn-primary:hover {
-    background: var(--color-brand-deep);
+    background: #ff8a4c;
   }
   .btn-light {
     background: var(--color-paper);
-    color: var(--color-brand-deep);
+    color: var(--color-ink);
   }
   .btn-light:hover {
-    background: var(--color-gold-light);
+    background: var(--color-gold);
   }
   .btn-outline {
     border: 1px solid currentColor;
     padding: calc(0.95rem - 1px) calc(1.6rem - 1px);
   }
   .btn-outline:hover {
-    background: var(--color-brand);
-    border-color: var(--color-brand);
+    background: var(--color-ink);
+    border-color: var(--color-ink);
     color: var(--color-paper);
   }
 
   /* Outline button for dark/photographic backgrounds */
   .btn-ghost-light {
-    border: 1px solid color-mix(in srgb, var(--color-paper) 55%, transparent);
-    padding: calc(0.95rem - 1px) calc(1.6rem - 1px);
+    background: color-mix(in srgb, var(--color-paper) 13%, transparent);
     color: var(--color-paper);
   }
   .btn-ghost-light:hover {
@@ -191,7 +214,7 @@
       text-decoration-color 0.2s ease;
   }
   .link-cta:hover {
-    color: var(--color-brand);
+    color: var(--color-gold-dark);
     text-decoration-color: currentColor;
   }
   .link-cta svg {
@@ -251,7 +274,7 @@ body {
   background-color: var(--color-paper);
   color: var(--color-ink);
   font-family: var(--font-sans);
-  font-size: 1.0625rem;
+  font-size: 1rem;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
   font-feature-settings: "kern", "liga";
@@ -279,7 +302,7 @@ blockquote {
 }
 
 :focus-visible {
-  outline: 2px solid var(--color-gold);
+  outline: 2px solid var(--color-gold-dark);
   outline-offset: 3px;
 }
 

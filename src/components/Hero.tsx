@@ -18,20 +18,20 @@ export default function Hero() {
       {/* Film + poster */}
       <HeroVideo poster={videoPoster} posterAlt={heroVideo.description} />
 
-      {/* Evergreen veil: strongest behind the text, clearer where the film breathes */}
-      <div aria-hidden="true" className="pointer-events-none absolute inset-0 bg-brand-deep/30" />
+      {/* Ink veil: neutral so the film keeps its true colour; darkest behind the text */}
+      <div aria-hidden="true" className="pointer-events-none absolute inset-0 bg-brand-deep/25" />
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute inset-0 bg-[linear-gradient(100deg,rgba(21,47,39,0.94)_0%,rgba(21,47,39,0.78)_36%,rgba(21,47,39,0.22)_72%,rgba(21,47,39,0.08)_100%)]"
+        className="pointer-events-none absolute inset-0 bg-[linear-gradient(95deg,rgba(14,19,17,0.88)_0%,rgba(14,19,17,0.62)_38%,rgba(14,19,17,0.12)_75%,rgba(14,19,17,0)_100%)]"
       />
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute inset-x-0 bottom-0 h-2/3 bg-[linear-gradient(0deg,rgba(21,47,39,0.96)_0%,rgba(21,47,39,0)_100%)]"
+        className="pointer-events-none absolute inset-x-0 bottom-0 h-3/4 bg-[linear-gradient(0deg,rgba(14,19,17,0.95)_0%,rgba(14,19,17,0.45)_45%,rgba(14,19,17,0)_100%)]"
       />
 
       {/* Message */}
       <div className="wrap relative z-10 flex flex-1 flex-col justify-center pb-16 pt-32 sm:pt-36 lg:pb-24">
-        <div className="max-w-3xl">
+        <div className="max-w-[58rem]">
           <p className="hero-fade type-eyebrow flex items-center gap-4 text-gold-light" style={d(150)}>
             <span aria-hidden="true" className="hero-draw h-px w-12 bg-gold-light" style={d(150)} />
             <span>
@@ -40,13 +40,13 @@ export default function Hero() {
             </span>
           </p>
 
-          <h1 id="hero-heading" className="mt-8 font-serif text-[clamp(2.6rem,7vw,6.5rem)] leading-[1.02] tracking-[-0.02em]">
-            <span className="block overflow-hidden pb-[0.08em]">
+          <h1 id="hero-heading" className="mt-8 font-serif text-[clamp(2.6rem,7vw,6.75rem)] leading-[0.94] tracking-[-0.042em]">
+            <span className="block overflow-hidden pb-[0.06em]">
               <span className="hero-rise block" style={d(250)}>
                 A chance to learn.
               </span>
             </span>
-            <span className="-mt-[0.08em] block overflow-hidden pb-[0.16em]">
+            <span className="-mt-[0.06em] block overflow-hidden pb-[0.12em]">
               <em className="hero-rise block text-gold-light" style={d(420)}>
                 A life with dignity.
               </em>
@@ -59,7 +59,7 @@ export default function Hero() {
           </p>
 
           <div className="hero-fade mt-10 flex flex-wrap items-center gap-4" style={d(850)}>
-            <a href={site.requestSupportHref} className="btn btn-light">
+            <a href={site.requestSupportHref} className="btn btn-primary">
               Request Support
               <ArrowIcon />
             </a>
@@ -96,7 +96,7 @@ export default function Hero() {
             >
               <span>
                 <span className="type-eyebrow block tabular-nums text-gold-light">{area.index}</span>
-                <span className="mt-1.5 block font-serif text-[1.25rem] leading-tight lg:text-[1.375rem]">{area.title}</span>
+                <span className="mt-1.5 block font-serif text-[1.2rem] leading-tight lg:text-[1.3rem]">{area.title}</span>
               </span>
               <ArrowIcon className="h-5 w-5 shrink-0 text-gold-light transition-transform group-hover:translate-x-1" />
             </a>

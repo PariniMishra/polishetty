@@ -14,7 +14,7 @@ export default function Footer() {
       <div className="wrap pt-20 sm:pt-28">
         {/* Signature + call to action */}
         <div className="flex flex-col gap-10 lg:flex-row lg:items-end lg:justify-between">
-          <p className="font-serif text-[clamp(2.75rem,7vw,6.5rem)] leading-[0.95] tracking-[-0.02em]">
+          <p className="font-serif text-[clamp(2.6rem,6.6vw,6.25rem)] leading-[0.92] tracking-[-0.045em]">
             Education. Care. <em className="text-gold-light">Dignity.</em>
           </p>
           <a href={site.requestSupportHref} className="btn btn-light shrink-0 self-start lg:self-auto">

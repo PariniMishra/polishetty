@@ -11,7 +11,7 @@ export default function About() {
           <div className="reveal lg:col-span-6 xl:col-span-5">
             <SectionLabel index="01">About Us</SectionLabel>
             <h2 id="about-heading" className="type-headline mt-8 text-ink">
-              Empowering Lives. Inspiring Hope. <em className="text-brand">Creating Lasting Change.</em>
+              Empowering Lives. Inspiring Hope. <em className="text-muted">Creating Lasting Change.</em>
             </h2>
             <p className="type-lead mt-8 text-ink-soft">
               <span className="text-ink">Polishetty Foundation</span> was established in India with a
@@ -50,8 +50,8 @@ export default function About() {
             <p className="type-eyebrow text-gold-dark lg:col-span-3 lg:pt-3">Our Mission</p>
             <p className="type-statement text-ink-soft lg:col-span-9">
               Our mission focuses on two important pillars:{" "}
-              <em className="text-brand">empowering underprivileged children through education</em> and{" "}
-              <em className="text-brand">supporting senior citizens through compassionate care and welfare initiatives</em>.
+              <em className="text-ink">empowering underprivileged children through education</em> and{" "}
+              <em className="text-ink">supporting senior citizens through compassionate care and welfare initiatives</em>.
             </p>
           </div>
 
@@ -82,12 +82,12 @@ export default function About() {
             <span aria-hidden="true" className="h-px w-10 bg-gold" />
           </figcaption>
           <blockquote className="mt-10">
-            <p className="font-serif text-[clamp(1.85rem,3.4vw,3rem)] leading-[1.18] tracking-[-0.008em] text-ink">
+            <p className="font-serif text-[clamp(1.9rem,3.4vw,3rem)] leading-[1.1] tracking-[-0.035em] text-ink">
               Every child deserves a chance to succeed, and every senior deserves to live with{" "}
-              <em className="text-brand">dignity.</em>
+              <em className="text-gold-dark">dignity.</em>
             </p>
           </blockquote>
-          <p className="mx-auto mt-10 max-w-md text-lg italic leading-relaxed text-ink-soft">
+          <p className="mx-auto mt-10 max-w-md text-lg leading-relaxed text-muted">
             Together, we hope to make a meaningful difference, one life at a time.
           </p>
         </figure>
@@ -122,7 +122,7 @@ function Pillar({
         />
         <span className="photo-tag">Illustrative photograph</span>
       </div>
-      <div className="mt-8 flex items-baseline gap-5 border-t border-brand/25 pt-6">
+      <div className="mt-8 flex items-baseline gap-5 border-t border-rule pt-6">
         <span className="type-eyebrow tabular-nums text-gold-dark">{number}</span>
         <div>
           <h3 className="type-title text-ink">{title}</h3>
