@@ -1,3 +1,4 @@
+import Link from "next/link";
 import type { Metadata } from "next";
 import { site } from "@/content/site";
 import { photos } from "@/content/photos";
@@ -79,9 +80,9 @@ export default function CreditsPage() {
           </ul>
         </section>
 
-        <a href="/" className="link-cta text-ink">
+        <Link href="/" className="link-cta text-ink">
           Back to the homepage
-        </a>
+        </Link>
       </div>
     </article>
   );

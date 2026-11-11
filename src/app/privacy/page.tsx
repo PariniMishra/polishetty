@@ -1,3 +1,4 @@
+import Link from "next/link";
 import type { Metadata } from "next";
 import { site } from "@/content/site";
 
@@ -83,9 +84,9 @@ const sections: { heading: string; body: React.ReactNode }[] = [
       <p>
         Photographs on this website are illustrative images used under Creative Commons licences. They do
         not show the Foundation&apos;s beneficiaries. Credits are listed on our{" "}
-        <a href="/credits" className="text-link text-gold-dark">
+        <Link href="/credits" className="text-link text-gold-dark">
           image credits
-        </a>{" "}
+        </Link>{" "}
         page.
       </p>
     ),
@@ -118,9 +119,9 @@ export default function PrivacyPage() {
             </section>
           ))}
         </div>
-        <a href="/" className="link-cta mt-16 text-ink">
+        <Link href="/" className="link-cta mt-16 text-ink">
           Back to the homepage
-        </a>
+        </Link>
       </div>
     </article>
   );

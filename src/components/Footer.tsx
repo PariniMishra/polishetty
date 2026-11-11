@@ -1,8 +1,10 @@
+import Link from "next/link";
 import Image from "next/image";
 import { contactDetails, site } from "@/content/site";
 import { focusAreas } from "@/content/focus";
 import SocialLinks from "./SocialLinks";
 import { ArrowIcon } from "./Icons";
+import { DrawLine, Reveal } from "./motion";
 
 const linkCls = "text-paper/70 transition-colors hover:text-paper";
 
@@ -18,21 +20,46 @@ function Column({ title, children }: { title: string; children: React.ReactNode 
 export default function Footer() {
   return (
     <footer className="bg-brand-deep text-paper">
-      <div className="wrap">
-        {/* Call to action */}
-        <div className="flex flex-col gap-8 border-b border-paper/10 py-14 sm:py-16 md:flex-row md:items-center md:justify-between">
-          <div>
-            <p className="font-serif text-[clamp(1.75rem,3.2vw,2.5rem)] leading-tight tracking-[-0.03em]">
-              Need support, or know someone who does?
-            </p>
-            <p className="mt-3 text-paper/60">We read every enquiry carefully and in confidence.</p>
-          </div>
-          <a href={site.requestSupportHref} className="btn btn-primary shrink-0 self-start md:self-auto">
-            Request Support
-            <ArrowIcon />
-          </a>
+      {/* Call to action */}
+      <div className="relative isolate overflow-hidden border-b border-paper/10">
+        <div aria-hidden="true" className="pointer-events-none absolute inset-0 -z-10">
+          <div className="absolute -right-[10%] -top-[60%] h-[52rem] w-[52rem] rounded-full bg-[radial-gradient(closest-side,rgba(255,107,26,0.2),transparent)]" />
+          <div className="absolute -bottom-[70%] left-[15%] h-[40rem] w-[40rem] rounded-full bg-[radial-gradient(closest-side,rgba(255,122,46,0.07),transparent)]" />
+          <div className="absolute inset-x-0 top-0 h-px bg-[linear-gradient(90deg,transparent,rgba(255,122,46,0.5),transparent)]" />
         </div>
 
+        <div className="wrap grid gap-12 py-20 sm:py-24 lg:grid-cols-12 lg:items-end lg:gap-x-12 lg:py-28">
+          <Reveal className="lg:col-span-8">
+            <p className="type-eyebrow flex items-center gap-4 text-gold-light">
+              <DrawLine className="block h-px w-10 bg-gold-light" />
+              We&apos;re here to help
+            </p>
+            <h2 className="mt-7 font-serif text-[clamp(2.3rem,5vw,4.5rem)] leading-[1.02] tracking-[-0.045em]">
+              Need support, or know <span className="text-gold-light">someone who does?</span>
+            </h2>
+            <p className="mt-7 max-w-xl text-lg leading-relaxed text-paper/60">
+              We read every enquiry carefully and in confidence. Tell us who needs help, and our team will get in
+              touch.
+            </p>
+          </Reveal>
+
+          <Reveal delay={0.15} className="lg:col-span-4 lg:justify-self-end">
+            <a href={site.requestSupportHref} className="btn btn-primary !px-8 !py-5 text-base">
+              Request Support
+              <ArrowIcon />
+            </a>
+            <p className="mt-5 flex items-center gap-2.5 text-[0.875rem] text-paper/50">
+              <svg aria-hidden="true" viewBox="0 0 24 24" className="h-4 w-4 text-gold-light" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
+                <circle cx="12" cy="12" r="9" />
+                <path d="M12 7v5l3 2" />
+              </svg>
+              Takes about two minutes
+            </p>
+          </Reveal>
+        </div>
+      </div>
+
+      <div className="wrap">
         {/* Links */}
         <div className="grid grid-cols-2 gap-x-6 gap-y-12 py-14 sm:py-16 lg:grid-cols-12 lg:gap-8">
           <div className="col-span-2 lg:col-span-5">
@@ -96,12 +123,12 @@ export default function Footer() {
             © {new Date().getFullYear()} {site.name}. {site.established}.
           </p>
           <div className="flex gap-6">
-            <a href="/privacy" className="transition-colors hover:text-paper">
+            <Link href="/privacy" className="transition-colors hover:text-paper">
               Privacy Policy
-            </a>
-            <a href="/credits" className="transition-colors hover:text-paper">
+            </Link>
+            <Link href="/credits" className="transition-colors hover:text-paper">
               Image credits
-            </a>
+            </Link>
           </div>
         </div>
       </div>

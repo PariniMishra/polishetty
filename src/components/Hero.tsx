@@ -1,5 +1,6 @@
 import HeroVideo, { VIDEO_CONTROL_ID } from "./HeroVideo";
 import { ArrowIcon } from "./Icons";
+import { ScrollAway } from "./motion";
 import { focusAreas } from "@/content/focus";
 import { heroVideo } from "@/content/video";
 import { site } from "@/content/site";
@@ -31,7 +32,7 @@ export default function Hero() {
 
       {/* Message */}
       <div className="wrap relative z-10 flex flex-1 flex-col justify-center pb-16 pt-32 sm:pt-36 lg:pb-24">
-        <div className="max-w-[58rem]">
+        <ScrollAway className="max-w-[58rem]">
           <p className="hero-fade type-eyebrow flex items-center gap-4 text-gold-light" style={d(150)}>
             <span aria-hidden="true" className="hero-draw h-px w-12 bg-gold-light" style={d(150)} />
             <span>
@@ -67,7 +68,7 @@ export default function Hero() {
               Explore Our Mission
             </a>
           </div>
-        </div>
+        </ScrollAway>
       </div>
 
       {/* Scroll cue */}

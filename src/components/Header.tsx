@@ -2,7 +2,8 @@
 
 import Image from "next/image";
 import { usePathname } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import { AnimatePresence, motion } from "motion/react";
 import { site } from "@/content/site";
 import { ArrowIcon } from "./Icons";
 
@@ -13,6 +14,8 @@ export default function Header() {
   const onHome = pathname === "/";
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [hidden, setHidden] = useState(false);
+  const lastY = useRef(0);
   const [active, setActive] = useState<string>("top");
 
   // Highlight the nav item for the section currently in view (homepage only)
@@ -32,7 +35,15 @@ export default function Header() {
   }, [onHome]);
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 8);
+    const onScroll = () => {
+      const y = window.scrollY;
+      setScrolled(y > 8);
+      // Tuck the bar away while reading down the page; bring it back on any scroll up
+      if (Math.abs(y - lastY.current) > 6) {
+        setHidden(y > lastY.current && y > 480);
+        lastY.current = y;
+      }
+    };
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
@@ -58,7 +69,9 @@ export default function Header() {
 
   return (
     <header
-      className={`fixed inset-x-0 top-0 z-50 border-b transition-[background-color,border-color,box-shadow] duration-500 ${
+      className={`fixed inset-x-0 top-0 z-50 border-b transition-[background-color,border-color,box-shadow,translate] duration-500 ${
+        hidden && !open ? "-translate-y-full" : ""
+      } ${
         overHero
           ? "border-paper/15 bg-transparent"
           : `bg-paper ${scrolled || open ? "border-rule shadow-[0_1px_12px_rgba(14,19,17,0.06)]" : "border-transparent"}`
@@ -84,13 +97,21 @@ export default function Header() {
                 <a
                   href={item.href}
                   aria-current={isCurrent(item.href) ? "location" : undefined}
-                  className={`relative py-2 text-[0.96875rem] font-semibold transition-colors after:absolute after:inset-x-0 after:-bottom-0.5 after:h-0.5 after:origin-left after:scale-x-0 after:transition-transform after:duration-300 hover:after:scale-x-100 aria-[current]:after:scale-x-100 ${
+                  className={`relative py-2 text-[0.96875rem] font-semibold transition-colors after:absolute after:inset-x-0 after:-bottom-0.5 after:h-0.5 after:origin-left after:scale-x-0 after:transition-transform after:duration-300 hover:after:scale-x-100 ${
                     overHero
                       ? "text-paper/80 after:bg-gold hover:text-paper aria-[current]:text-paper"
                       : "text-ink-soft after:bg-gold hover:text-ink aria-[current]:text-ink"
                   }`}
                 >
                   {item.label}
+                  {isCurrent(item.href) && (
+                    <motion.span
+                      layoutId="nav-current"
+                      aria-hidden="true"
+                      className="absolute inset-x-0 -bottom-0.5 h-0.5 bg-gold"
+                      transition={{ type: "spring", stiffness: 380, damping: 34 }}
+                    />
+                  )}
                 </a>
               </li>
             ))}
@@ -120,15 +141,26 @@ export default function Header() {
         </button>
       </div>
 
+      <AnimatePresence>
       {open && (
-        <nav
+        <motion.nav
+          initial={{ opacity: 0, y: -12 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: -12 }}
+          transition={{ duration: 0.35, ease: [0.16, 0.84, 0.3, 1] }}
           id="mobile-menu"
           aria-label="Mobile"
-          className="flex h-[calc(100dvh-4.5rem)] flex-col overflow-y-auto bg-paper motion-safe:animate-[rise_0.35s_cubic-bezier(0.2,0.7,0.2,1)] lg:hidden"
+          className="flex h-[calc(100dvh-4.5rem)] flex-col overflow-y-auto bg-paper lg:hidden"
         >
           <ul className="wrap pt-4">
             {site.nav.map((item, i) => (
-              <li key={item.href} className="border-b border-rule">
+              <motion.li
+                key={item.href}
+                className="border-b border-rule"
+                initial={{ opacity: 0, x: -16 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: 0.06 + i * 0.05, duration: 0.5, ease: [0.16, 0.84, 0.3, 1] }}
+              >
                 <a
                   href={item.href}
                   onClick={() => setOpen(false)}
@@ -138,7 +170,7 @@ export default function Header() {
                   <span className="type-eyebrow tabular-nums text-gold-dark">0{i + 1}</span>
                   {item.label}
                 </a>
-              </li>
+              </motion.li>
             ))}
           </ul>
           <div className="wrap mt-auto pb-8 pt-10">
@@ -154,8 +186,9 @@ export default function Header() {
               {site.tagline}
             </p>
           </div>
-        </nav>
+        </motion.nav>
       )}
+      </AnimatePresence>
     </header>
   );
 }

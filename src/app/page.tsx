@@ -1,5 +1,6 @@
 import Hero from "@/components/Hero";
 import About from "@/components/About";
+import Mission from "@/components/Mission";
 import Focus from "@/components/Focus";
 import Commitment from "@/components/Commitment";
 import Impact from "@/components/Impact";
@@ -11,6 +12,7 @@ export default function Home() {
     <>
       <Hero />
       <About />
+      <Mission />
       <Focus />
       <Commitment />
       <Impact />

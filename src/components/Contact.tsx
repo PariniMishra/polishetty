@@ -1,4 +1,6 @@
+import Link from "next/link";
 import SectionLabel from "./SectionLabel";
+import { Reveal } from "./motion";
 import ContactForm from "./ContactForm";
 import SocialLinks, { socialProfiles } from "./SocialLinks";
 import { contactDetails } from "@/content/site";
@@ -13,7 +15,7 @@ export default function Contact() {
   return (
     <section id="contact" aria-labelledby="contact-heading" className="section">
       <div className="wrap">
-        <div className="reveal grid overflow-hidden lg:grid-cols-12">
+        <Reveal className="grid overflow-hidden lg:grid-cols-12">
           {/* Context panel */}
           <div className="bg-brand px-6 py-12 text-paper sm:px-10 sm:py-14 lg:col-span-5 lg:px-12 lg:py-16">
             <SectionLabel index="05" light>
@@ -75,9 +77,9 @@ export default function Contact() {
               </svg>
               <span>
                 Your details are used only to respond to your enquiry. Read our{" "}
-                <a href="/privacy" className="text-link text-paper">
+                <Link href="/privacy" className="text-link text-paper">
                   privacy policy
-                </a>
+                </Link>
                 .
               </span>
             </p>
@@ -94,7 +96,7 @@ export default function Contact() {
               <ContactForm />
             </div>
           </div>
-        </div>
+        </Reveal>
       </div>
     </section>
   );

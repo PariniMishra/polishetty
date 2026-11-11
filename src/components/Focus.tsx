@@ -1,5 +1,6 @@
 import Image from "next/image";
 import SectionLabel from "./SectionLabel";
+import { Reveal, ParallaxPhoto } from "./motion";
 import SupportLink from "./SupportLink";
 import { ArrowIcon } from "./Icons";
 import { focusAreas, type FocusArea } from "@/content/focus";
@@ -11,7 +12,7 @@ export default function Focus() {
     <section id="focus" aria-labelledby="focus-heading" className="border-t border-rule">
       <div className="wrap section">
         {/* Intro */}
-        <div className="reveal grid gap-y-10 lg:grid-cols-12 lg:gap-x-12">
+        <Reveal className="grid gap-y-10 lg:grid-cols-12 lg:gap-x-12">
           <div className="lg:col-span-7">
             <SectionLabel index="02">Our Focus</SectionLabel>
             <h2 id="focus-heading" className="type-headline mt-8 text-ink">
@@ -29,12 +30,12 @@ export default function Focus() {
               limited by financial circumstances.
             </p>
           </div>
-        </div>
+        </Reveal>
 
         {/* Feature: Education */}
         <article id={education.id} className="group mt-20 grid items-center gap-y-10 lg:mt-28 lg:grid-cols-12 lg:gap-x-12">
-          <div className="reveal lg:col-span-6">
-            <div className="photo aspect-[4/5] sm:aspect-[4/3] lg:aspect-[4/5]">
+          <Reveal className="lg:col-span-6">
+            <ParallaxPhoto className="aspect-[4/5] sm:aspect-[4/3] lg:aspect-[4/5]">
               <Image
                 src={education.photo.image}
                 alt={education.photo.alt}
@@ -43,17 +44,17 @@ export default function Focus() {
                 sizes="(min-width: 1024px) 50vw, 100vw"
                 className="object-cover object-[50%_20%]"
               />
-            </div>
-          </div>
-          <div className="reveal lg:col-span-6 lg:pl-6 xl:col-span-5 xl:pl-0 xl:col-start-8">
+            </ParallaxPhoto>
+          </Reveal>
+          <Reveal className="lg:col-span-6 lg:pl-6 xl:col-span-5 xl:pl-0 xl:col-start-8">
             <AreaText area={education} large />
-          </div>
+          </Reveal>
         </article>
 
         {/* Two areas, offset for an editorial rhythm */}
         <div className="mt-24 grid gap-y-20 lg:mt-36 lg:grid-cols-12 lg:gap-x-12">
-          <article id={seniors.id} className="reveal group lg:col-span-7">
-            <div className="photo aspect-[3/2]">
+          <Reveal as="article" id={seniors.id} className="group lg:col-span-7">
+            <ParallaxPhoto className="aspect-[3/2]">
               <Image
                 src={seniors.photo.image}
                 alt={seniors.photo.alt}
@@ -62,14 +63,14 @@ export default function Focus() {
                 sizes="(min-width: 1024px) 55vw, 100vw"
                 className="object-cover object-[30%_40%]"
               />
-            </div>
+            </ParallaxPhoto>
             <div className="mt-10 max-w-xl">
               <AreaText area={seniors} />
             </div>
-          </article>
+          </Reveal>
 
-          <article id={community.id} className="reveal group lg:col-span-5 lg:mt-48">
-            <div className="photo aspect-[4/3] lg:aspect-[5/6]">
+          <Reveal as="article" id={community.id} className="group lg:col-span-5 lg:mt-48">
+            <ParallaxPhoto className="aspect-[4/3] lg:aspect-[5/6]">
               <Image
                 src={community.photo.image}
                 alt={community.photo.alt}
@@ -78,11 +79,11 @@ export default function Focus() {
                 sizes="(min-width: 1024px) 40vw, 100vw"
                 className="object-cover object-[40%_50%]"
               />
-            </div>
+            </ParallaxPhoto>
             <div className="mt-10">
               <AreaText area={community} />
             </div>
-          </article>
+          </Reveal>
         </div>
       </div>
     </section>

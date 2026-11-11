@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { Inter, Inter_Tight } from "next/font/google";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import { MotionProvider } from "@/components/motion";
 import { site } from "@/content/site";
 import "./globals.css";
 
@@ -67,9 +68,15 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         >
           Skip to content
         </a>
-        <Header />
-        <main id="main">{children}</main>
-        <Footer />
+        <noscript>
+          {/* Without JavaScript, show content that would otherwise animate in */}
+          <style>{`[style*="opacity:0"],[style*="opacity: 0"]{opacity:1!important;transform:none!important;clip-path:none!important}`}</style>
+        </noscript>
+        <MotionProvider>
+          <Header />
+          <main id="main">{children}</main>
+          <Footer />
+        </MotionProvider>
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd) }}
