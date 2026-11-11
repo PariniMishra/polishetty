@@ -38,7 +38,6 @@ export default function Stories() {
               sizes="(min-width: 1024px) 55vw, 100vw"
               className="object-cover"
             />
-            <span className="photo-tag">Illustrative photograph</span>
           </div>
           <div className="px-6 pb-10 sm:px-10 lg:col-span-5 lg:px-12 lg:py-12">
             <StoryMeta story={feature} />
@@ -63,7 +62,6 @@ export default function Stories() {
                     sizes="(min-width: 768px) 32vw, 100vw"
                     className="object-cover object-[50%_35%]"
                   />
-                  <span className="photo-tag">Illustrative photograph</span>
                 </div>
                 <div className="mt-6">
                   <StoryMeta story={story} />

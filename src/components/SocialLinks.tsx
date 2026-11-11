@@ -6,43 +6,51 @@ const platforms = [
   { key: "facebook", label: "Facebook", Icon: FacebookIcon },
   { key: "linkedin", label: "LinkedIn", Icon: LinkedInIcon },
   { key: "youtube", label: "YouTube", Icon: YouTubeIcon },
-  { key: "x", label: "X (Twitter)", Icon: XIcon },
+  { key: "x", label: "X", Icon: XIcon },
 ] as const;
 
-/** Profiles that have a URL set in src/content/site.ts. */
-export const activeSocial = platforms.filter(({ key }) => site.social[key].trim() !== "");
+/** Platforms listed in src/content/site.ts (linked once a url is added). */
+export const socialProfiles = platforms
+  .map((p) => ({ ...p, ...site.social[p.key] }))
+  .filter((p): p is (typeof platforms)[number] & { handle: string; url: string } => Boolean(p.handle));
 
 /**
- * `showAll` renders every platform even without a URL yet; those link to "#"
- * as placeholders until a profile URL is added in src/content/site.ts.
+ * Row of social media icons.
+ * A profile with a url becomes a link (opens in a new tab); without one the
+ * icon is shown but not clickable, so there are never dead links.
  */
-export default function SocialLinks({
-  tone = "dark",
-  showAll = false,
-}: {
-  tone?: "dark" | "light";
-  showAll?: boolean;
-}) {
-  const items = showAll ? platforms : activeSocial;
-  if (items.length === 0) return null;
+export default function SocialLinks({ tone = "dark" }: { tone?: "dark" | "light" }) {
+  if (socialProfiles.length === 0) return null;
 
-  const style = tone === "light" ? "text-paper/80 hover:text-gold-light" : "text-ink hover:text-gold-dark";
+  const base =
+    tone === "light"
+      ? "border-paper/20 text-paper/85"
+      : "border-rule text-ink";
+  const hover = "hover:border-gold hover:bg-gold hover:text-ink";
 
   return (
-    <ul className="-ml-2.5 flex flex-wrap gap-1">
-      {items.map(({ key, label, Icon }) => {
-        const url = site.social[key].trim();
+    <ul className="flex flex-wrap gap-2.5">
+      {socialProfiles.map(({ key, label, Icon, url }) => {
+        const cls = `flex h-10 w-10 items-center justify-center rounded-full border transition-colors ${base}`;
         return (
           <li key={key}>
-            <a
-              href={url || "#"}
-              {...(url ? { target: "_blank", rel: "noopener noreferrer" } : {})}
-              aria-label={url ? `${site.name} on ${label} (opens in a new tab)` : `${site.name} on ${label}`}
-              title={label}
-              className={`flex h-11 w-11 items-center justify-center transition-colors ${style}`}
-            >
-              <Icon className="h-5 w-5" />
-            </a>
+            {url.trim() ? (
+              <a
+                href={url}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={`${site.name} on ${label} (opens in a new tab)`}
+                title={label}
+                className={`${cls} ${hover}`}
+              >
+                <Icon className="h-4 w-4" />
+              </a>
+            ) : (
+              <span className={cls} title={`${label} (link coming soon)`}>
+                <Icon className="h-4 w-4"/>
+                <span className="sr-only">{label}</span>
+              </span>
+            )}
           </li>
         );
       })}

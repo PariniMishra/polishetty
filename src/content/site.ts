@@ -17,16 +17,20 @@ export const site = {
   } as { email: string; phone: string; address: string },
 
   /**
-   * Social media profiles. Paste the full profile URL for each account the
-   * foundation has. Only platforms with a URL are shown on the site.
+   * Social media profiles, shown in the footer and the Contact section.
+   *
+   * ▸ handle: the name shown on the site. Change it to the real handle.
+   * ▸ url:    paste the full profile link between the quotes. Until a url is
+   *           added, the handle is shown as plain text (not a dead link).
+   * To hide a platform completely, delete its line.
    */
   social: {
-    instagram: "", // e.g. "https://www.instagram.com/polishettyfoundation"
-    facebook: "", // e.g. "https://www.facebook.com/polishettyfoundation"
-    linkedin: "", // e.g. "https://www.linkedin.com/company/polishetty-foundation"
-    youtube: "", // e.g. "https://www.youtube.com/@polishettyfoundation"
-    x: "", // e.g. "https://x.com/polishettyfdn"
-  } as Record<"instagram" | "facebook" | "linkedin" | "youtube" | "x", string>,
+    instagram: { handle: "@polishettyfoundation", url: "" }, // e.g. "https://www.instagram.com/…"
+    facebook: { handle: "Polishetty Foundation", url: "" }, // e.g. "https://www.facebook.com/…"
+    linkedin: { handle: "Polishetty Foundation", url: "" }, // e.g. "https://www.linkedin.com/company/…"
+    youtube: { handle: "@polishettyfoundation", url: "" }, // e.g. "https://www.youtube.com/@…"
+    x: { handle: "@polishettyfdn", url: "" }, // e.g. "https://x.com/…"
+  } as Partial<Record<"instagram" | "facebook" | "linkedin" | "youtube" | "x", { handle: string; url: string }>>,
 
   /** Section links work from every page ("/#id"), not just the homepage. */
   nav: [

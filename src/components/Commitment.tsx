@@ -20,7 +20,6 @@ export default function Commitment() {
                 sizes="(min-width: 1024px) 40vw, 100vw"
                 className="object-cover object-[58%_50%]"
               />
-              <span className="photo-tag">Illustrative photograph</span>
             </div>
           </figure>
 

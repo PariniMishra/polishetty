@@ -103,13 +103,6 @@ export default function Hero() {
           ))}
           <div className="flex items-center gap-4 border-t border-paper/15 py-5 lg:border-l lg:border-t-0 lg:pl-7">
             <span id={VIDEO_CONTROL_ID} className="contents" />
-            <p className="whitespace-nowrap text-[0.8125rem] leading-snug text-paper/65">
-              Illustrative footage
-              <br />
-              <a href="#photo-credits" className="underline underline-offset-2 hover:text-paper">
-                Credits
-              </a>
-            </p>
           </div>
         </div>
       </div>

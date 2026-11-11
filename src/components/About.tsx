@@ -37,7 +37,6 @@ export default function About() {
                 sizes="(min-width: 1024px) 55vw, 100vw"
                 className="object-cover"
               />
-              <span className="photo-tag">Illustrative photograph</span>
             </div>
           </figure>
         </div>
@@ -120,7 +119,6 @@ function Pillar({
           sizes="(min-width: 768px) 45vw, 100vw"
           className={`object-cover ${position}`}
         />
-        <span className="photo-tag">Illustrative photograph</span>
       </div>
       <div className="mt-8 flex items-baseline gap-5 border-t border-rule pt-6">
         <span className="type-eyebrow tabular-nums text-gold-dark">{number}</span>

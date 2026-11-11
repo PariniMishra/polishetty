@@ -64,7 +64,6 @@ export default function Impact() {
                   sizes="(min-width: 768px) 32vw, 100vw"
                   className={`object-cover ${c.position ?? "object-center"}`}
                 />
-                <span className="photo-tag">Illustrative photograph</span>
               </div>
               <p className="type-eyebrow mt-7 flex items-center gap-3 text-gold-dark">
                 <span className="tabular-nums">0{i + 1}</span>

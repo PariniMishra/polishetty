@@ -82,7 +82,11 @@ const sections: { heading: string; body: React.ReactNode }[] = [
     body: (
       <p>
         Photographs on this website are illustrative images used under Creative Commons licences. They do
-        not show the Foundation&apos;s beneficiaries. Full credits are listed in the footer of every page.
+        not show the Foundation&apos;s beneficiaries. Credits are listed on our{" "}
+        <a href="/credits" className="text-link text-gold-dark">
+          image credits
+        </a>{" "}
+        page.
       </p>
     ),
   },

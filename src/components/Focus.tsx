@@ -43,7 +43,6 @@ export default function Focus() {
                 sizes="(min-width: 1024px) 50vw, 100vw"
                 className="object-cover object-[50%_20%]"
               />
-              <span className="photo-tag">Illustrative photograph</span>
             </div>
           </div>
           <div className="reveal lg:col-span-6 lg:pl-6 xl:col-span-5 xl:pl-0 xl:col-start-8">
@@ -63,7 +62,6 @@ export default function Focus() {
                 sizes="(min-width: 1024px) 55vw, 100vw"
                 className="object-cover object-[30%_40%]"
               />
-              <span className="photo-tag">Illustrative photograph</span>
             </div>
             <div className="mt-10 max-w-xl">
               <AreaText area={seniors} />
@@ -80,7 +78,6 @@ export default function Focus() {
                 sizes="(min-width: 1024px) 40vw, 100vw"
                 className="object-cover object-[40%_50%]"
               />
-              <span className="photo-tag">Illustrative photograph</span>
             </div>
             <div className="mt-10">
               <AreaText area={community} />

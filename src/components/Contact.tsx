@@ -1,6 +1,6 @@
 import SectionLabel from "./SectionLabel";
 import ContactForm from "./ContactForm";
-import SocialLinks, { activeSocial } from "./SocialLinks";
+import SocialLinks, { socialProfiles } from "./SocialLinks";
 import { contactDetails } from "@/content/site";
 
 const steps = [
@@ -41,7 +41,7 @@ export default function Contact() {
               </ol>
             </div>
 
-            {(contactDetails.length > 0 || activeSocial.length > 0) && (
+            {(contactDetails.length > 0 || socialProfiles.length > 0) && (
               <dl className="mt-12 space-y-5 border-t border-paper/20 pt-8">
                 {contactDetails.map(({ label, value, href }) => (
                   <div key={label}>
@@ -57,10 +57,10 @@ export default function Contact() {
                     </dd>
                   </div>
                 ))}
-                {activeSocial.length > 0 && (
+                {socialProfiles.length > 0 && (
                   <div>
                     <dt className="type-eyebrow text-paper/60">Follow Us</dt>
-                    <dd className="mt-2">
+                    <dd className="mt-4">
                       <SocialLinks tone="light" />
                     </dd>
                   </div>
