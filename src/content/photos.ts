@@ -1,6 +1,5 @@
 import type { StaticImageData } from "next/image";
 import educationClassroom from "@/assets/photos/education-classroom.jpg";
-import educationReading from "@/assets/photos/education-reading.jpg";
 import seniorPortrait from "@/assets/photos/senior-portrait.jpg";
 import heroClassroomSmiles from "@/assets/photos/hero-classroom-smiles.jpg";
 import aboutOutdoorClass from "@/assets/photos/about-outdoor-class.jpg";
@@ -11,9 +10,6 @@ import commitmentGrandparents from "@/assets/photos/commitment-grandparents.jpg"
 import impactStudyGroup from "@/assets/photos/impact-study-group.jpg";
 import impactElderPortrait from "@/assets/photos/impact-elder-portrait.jpg";
 import impactRuralWomen from "@/assets/photos/impact-rural-women.jpg";
-import storyKulluStudy from "@/assets/photos/story-kullu-study.jpg";
-import storyElderHome from "@/assets/photos/story-elder-home.jpg";
-import storyShgMother from "@/assets/photos/story-shg-mother.jpg";
 
 /**
  * Photographs used on the site.
@@ -157,46 +153,6 @@ export const photos = {
       author: "McKay Savage",
       ...BY2,
       sourceUrl: commons("India_-_Faces_-_Rural_women_driving_their_own_change_1_(2229752965).jpg"),
-    },
-  },
-  kulluStudy: {
-    image: storyKulluStudy,
-    alt: "Schoolchildren studying on a mat in a courtyard, their bags and books around them",
-    credit: {
-      title: "Bekhli School Children Study, Kullu, Himachal",
-      author: "Timothy A. Gonsalves",
-      ...BYSA4,
-      sourceUrl: commons("Bekhli_School_Children_Study_Kullu_Himachal_Dec17_D72_4560.jpg"),
-    },
-  },
-  elderAtHome: {
-    image: storyElderHome,
-    alt: "An elderly woman sitting alone on the veranda of her home",
-    credit: {
-      title: "An old woman from the Jenu Kuruba community",
-      author: "MaximusPrasad",
-      ...BYSA4,
-      sourceUrl: commons("8.An_old_Woman_from_Jenu_Kuruba_Community.jpg"),
-    },
-  },
-  motherAndChild: {
-    image: storyShgMother,
-    alt: "A young mother holding her small daughter on her hip",
-    credit: {
-      title: "Rural women from a SHG",
-      author: "McKay Savage",
-      ...BY2,
-      sourceUrl: commons("Rural_women_from_a_SHG.jpg"),
-    },
-  },
-  reading: {
-    image: educationReading,
-    alt: "A schoolgirl sitting at a table, absorbed in reading a picture book",
-    credit: {
-      title: "A girl reading a book",
-      author: "Pratham Books",
-      ...BY2,
-      sourceUrl: commons("A_girl_reading_a_book_-_Flickr_-_Pratham_Books_(1).jpg"),
     },
   },
 } satisfies Record<string, Photo>;

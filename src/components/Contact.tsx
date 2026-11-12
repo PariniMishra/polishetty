@@ -18,7 +18,7 @@ export default function Contact() {
         <Reveal className="grid overflow-hidden lg:grid-cols-12">
           {/* Context panel */}
           <div className="bg-brand px-6 py-12 text-paper sm:px-10 sm:py-14 lg:col-span-5 lg:px-12 lg:py-16">
-            <SectionLabel index="05" light>
+            <SectionLabel index="04" light>
               Contact Us
             </SectionLabel>
             <h2 id="contact-heading" className="type-headline mt-8">

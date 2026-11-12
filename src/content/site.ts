@@ -38,7 +38,6 @@ export const site = {
     { label: "About Us", href: "/#about" },
     { label: "Our Focus", href: "/#focus" },
     { label: "Our Impact", href: "/#impact" },
-    { label: "Stories", href: "/#stories" },
     { label: "Contact Us", href: "/#contact" },
   ],
   requestSupportHref: "/#contact",

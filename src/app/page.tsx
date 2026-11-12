@@ -4,7 +4,6 @@ import Mission from "@/components/Mission";
 import Focus from "@/components/Focus";
 import Commitment from "@/components/Commitment";
 import Impact from "@/components/Impact";
-import Stories from "@/components/Stories";
 import Contact from "@/components/Contact";
 
 export default function Home() {
@@ -16,7 +15,6 @@ export default function Home() {
       <Focus />
       <Commitment />
       <Impact />
-      <Stories />
       <Contact />
     </>
   );

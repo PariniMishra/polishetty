@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { usePathname } from "next/navigation";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "motion/react";
 import { site } from "@/content/site";
 import { ArrowIcon } from "./Icons";
@@ -14,8 +14,6 @@ export default function Header() {
   const onHome = pathname === "/";
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const [hidden, setHidden] = useState(false);
-  const lastY = useRef(0);
   const [active, setActive] = useState<string>("top");
 
   // Highlight the nav item for the section currently in view (homepage only)
@@ -35,15 +33,7 @@ export default function Header() {
   }, [onHome]);
 
   useEffect(() => {
-    const onScroll = () => {
-      const y = window.scrollY;
-      setScrolled(y > 8);
-      // Tuck the bar away while reading down the page; bring it back on any scroll up
-      if (Math.abs(y - lastY.current) > 6) {
-        setHidden(y > lastY.current && y > 480);
-        lastY.current = y;
-      }
-    };
+    const onScroll = () => setScrolled(window.scrollY > 8);
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
@@ -69,9 +59,7 @@ export default function Header() {
 
   return (
     <header
-      className={`fixed inset-x-0 top-0 z-50 border-b transition-[background-color,border-color,box-shadow,translate] duration-500 ${
-        hidden && !open ? "-translate-y-full" : ""
-      } ${
+      className={`fixed inset-x-0 top-0 z-50 border-b transition-[background-color,border-color,box-shadow] duration-500 ${
         overHero
           ? "border-paper/15 bg-transparent"
           : `bg-paper ${scrolled || open ? "border-rule shadow-[0_1px_12px_rgba(14,19,17,0.06)]" : "border-transparent"}`

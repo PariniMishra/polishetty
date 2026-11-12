@@ -1,13 +1,13 @@
-import Image from "next/image";
 import SectionLabel from "./SectionLabel";
-import { Reveal, ParallaxPhoto } from "./motion";
-import { photos, type Photo } from "@/content/photos";
+import ImpactShowcase, { type Commitment } from "./ImpactShowcase";
+import { Reveal } from "./motion";
+import { photos } from "@/content/photos";
 
 /**
  * Impact, told honestly. The foundation has no published outcome figures yet,
  * so this section states commitments rather than statistics.
  */
-const commitments: { area: string; title: string; body: string; photo: Photo; position?: string }[] = [
+const commitments: Commitment[] = [
   {
     area: "Education",
     title: "Opportunity to learn",
@@ -31,7 +31,7 @@ const commitments: { area: string; title: string; body: string; photo: Photo; po
 
 export default function Impact() {
   return (
-    <section id="impact" aria-labelledby="impact-heading">
+    <section id="impact" aria-labelledby="impact-heading" className="bg-stone">
       <div className="wrap section">
         <Reveal className="grid gap-y-8 lg:grid-cols-12 lg:gap-x-12">
           <div className="lg:col-span-7">
@@ -46,29 +46,7 @@ export default function Impact() {
           </p>
         </Reveal>
 
-        <ol className="mt-16 grid gap-x-8 gap-y-14 md:grid-cols-3 lg:mt-20">
-          {commitments.map((c, i) => (
-            <Reveal as="li" key={c.area} delay={i * 0.12} className="group">
-              <ParallaxPhoto className="aspect-[4/5]">
-                <Image
-                  src={c.photo.image}
-                  alt={c.photo.alt}
-                  fill
-                  placeholder="blur"
-                  sizes="(min-width: 768px) 32vw, 100vw"
-                  className={`object-cover ${c.position ?? "object-center"}`}
-                />
-              </ParallaxPhoto>
-              <p className="type-eyebrow mt-7 flex items-center gap-3 text-gold-dark">
-                <span className="tabular-nums">0{i + 1}</span>
-                <span aria-hidden="true" className="h-px w-6 bg-gold/60" />
-                {c.area}
-              </p>
-              <h3 className="type-title mt-4 text-ink">{c.title}</h3>
-              <p className="mt-4 text-lg leading-[1.7] text-ink-soft">{c.body}</p>
-            </Reveal>
-          ))}
-        </ol>
+        <ImpactShowcase items={commitments} />
       </div>
     </section>
   );
